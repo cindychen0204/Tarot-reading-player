@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "吊るし人",
+            "number": 12,
+            "keyword": "静止",
+            "curSituation_up": "自分の一存ではどうしようもない状況",
+            "curSituation_re": "苦しみから逃れようとしてかえってもがき苦しむ",
+            "feelings_up": "覚悟を決めている",
+            "feelings_re": "覚悟が決まらない",
+            "cause_up": "精神的・肉体的な限界",
+            "cause_re": "悪あがきをしている",
+            "future_up": "我慢を強いられる展開",
+            "future_re": "苦しみが増す",
+            "advice_up": "すべてを受け入れて時間が過ぎるのを待って",
+            "advice_re": "自分の無力さを認めた瞬間、楽になれるはず",
+            "love_up": "進展がない",
+            "love_re": "苦しくてつらい恋",
+            "work_up": "許容量をこえる",
+            "work_re": "見返りを気にする",
+            "interpersonal_up": "孤独になる",
+            "interpersonal_re": "迷惑をかけるひと",
+            "other_up": "犠牲的精神",
+            "other_re": "自虐"
+        }
+    ]
+}

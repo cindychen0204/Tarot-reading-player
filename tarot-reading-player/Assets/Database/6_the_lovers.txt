@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "恋人",
+            "number": 6,
+            "keyword": "心地よさ",
+            "curSituation_up": "楽しい時期",
+            "curSituation_re": "うわついている運気",
+            "feelings_up": "大好き",
+            "feelings_re": "心が揺れ動いて選べない",
+            "cause_up": "今しか見えていない",
+            "cause_re": "人に迷惑をかけていることに気づいていない",
+            "future_up": "時間を忘れる楽しいひととき",
+            "future_re": "無責任に楽しむだけ楽しむ",
+            "advice_up": "目の前のできごとを楽しんで",
+            "advice_re": "節度をわきまえた行動を",
+            "love_up": "恋に落ちる",
+            "love_re": "三角関係",
+            "work_up": "楽しく集中できる仕事",
+            "work_re": "集中できない",
+            "interpersonal_up": "話が弾む",
+            "interpersonal_re": "そりが合わない",
+            "other_up": "カジュアル",
+            "other_re": "シャイ"
+        }
+    ]
+}

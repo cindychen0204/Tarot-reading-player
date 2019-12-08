@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "女司祭",
+            "number": 2,
+            "keyword": "精神性",
+            "curSituation_up": "すべてが整っている状態",
+            "curSituation_re": "きっちりしすぎている",
+            "feelings_up": "まじめにものごとをとらえている",
+            "feelings_re": "精神的に未熟",
+            "cause_up": "正解を求めすぎる",
+            "cause_re": "融通がきかない",
+            "future_up": "なにかを学ぶ機会が訪れる",
+            "future_re": "冷静さをうち内取り乱すできごと",
+            "advice_up": "目標に向けてまい進して",
+            "advice_re": "ストレス発散して",
+            "love_up": "古風な交際",
+            "love_re": "嫉妬",
+            "work_up": "勤勉",
+            "work_re": "能力不足",
+            "interpersonal_up": "繊細でナイーブな心の持ち主",
+            "interpersonal_re": "神経室でカリカリしている",
+            "other_up": "憧れのイメージ",
+            "other_re": "みっともない"
+        }
+    ]
+}

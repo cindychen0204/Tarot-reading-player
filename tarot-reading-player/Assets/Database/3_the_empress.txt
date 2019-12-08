@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "女帝",
+            "number": 3,
+            "keyword": "愛",
+            "curSituation_up": "物心ともに余裕のある状況",
+            "curSituation_re": "現状にあぐらをかいている",
+            "feelings_up": "落ち着いて余裕のある心境",
+            "feelings_re": "自分に甘い",
+            "cause_up": "愛や善意を利用されている",
+            "cause_re": "「そのうちなんとかなる」という他力本願の態度",
+            "future_up": "恋が愛に変わる",
+            "future_re": "低い方に流れる",
+            "advice_up": "どんな人にも優しく",
+            "advice_re": "今は決断を避けて様子を見るべき",
+            "love_up": "愛し合う関係",
+            "love_re": "共依存",
+            "work_up": "利益を生む",
+            "work_re": "利益や結果を出さない",
+            "interpersonal_up": "リラックスできる人",
+            "interpersonal_re": "だらけた関係",
+            "other_up": "生む",
+            "other_re": "甘い考え"
+        }
+    ]
+}

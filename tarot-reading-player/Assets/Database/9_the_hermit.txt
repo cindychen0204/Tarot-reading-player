@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "隠者",
+            "number": 9,
+            "keyword": "探究",
+            "curSituation_up": "現状維持の運気",
+            "curSituation_re": "過去の自分と向き合うとき",
+            "feelings_up": "人は人、自分は自分と割り切る",
+            "feelings_re": "世間体を気にしている",
+            "cause_up": "こだわりの強さ",
+            "cause_re": "考えかたが間違っている",
+            "future_up": "このまま平穏な日々が続く",
+            "future_re": "外の世界に出るタイミングを逃がす",
+            "advice_up": "あせらずに時間をかけて臨むべき",
+            "advice_re": "「あのときこうだったから」といういいわけはやめて",
+            "love_up": "胸に秘めた長い片思い",
+            "love_re": "恋に恋する",
+            "work_up": "精神的に充実する",
+            "work_re": "まっとな意見を無視する",
+            "interpersonal_up": "変わらぬ関係",
+            "interpersonal_re": "気難しい相手",
+            "other_up": "信念がある",
+            "other_re": "誰も必要としない"
+        }
+    ]
+}

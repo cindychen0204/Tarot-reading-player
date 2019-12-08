@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "力",
+            "number": 8,
+            "keyword": "本質的な力",
+            "curSituation_up": "正念場",
+            "curSituation_re": "運の流れが減退",
+            "feelings_up": "このまま終わらせたくない",
+            "feelings_re": "意欲を失ってどうでもよくなる",
+            "cause_up": "自ら苦労を背負い込んでいる",
+            "cause_re": "自分の弱さに負ける",
+            "future_up": "緊張感のある状況を乗りこえる",
+            "future_re": "あと少しのところで音を上げる",
+            "advice_up": "ここまできたのだから諦めないで",
+            "advice_re": "気持ちがさめているなら諦めて",
+            "love_up": "かたい絆で結ばれる",
+            "love_re": "手に負えない恋",
+            "work_up": "必ずやりとげる",
+            "work_re": "根気不足で仕事が続かない",
+            "interpersonal_up": "協力し合える関係",
+            "interpersonal_re": "ひとりよがり",
+            "other_up": "前向き",
+            "other_re": "後ろ向き"
+        }
+    ]
+}

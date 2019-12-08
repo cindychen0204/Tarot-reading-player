@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "死",
+            "number": 13,
+            "keyword": "さだめ",
+            "curSituation_up": "なにかが終わりを迎える運気",
+            "curSituation_re": "停滞していて一進一退の運気",
+            "feelings_up": "ふんぎりがついた",
+            "feelings_re": "往生際が悪い",
+            "cause_up": "白か黒か極端で中間がない考えかた",
+            "cause_re": "強すぎるショック",
+            "future_up": "新たに生まれ変わる",
+            "future_re": "長引く苦労",
+            "advice_up": "思いきってリセット",
+            "advice_re": "うじうじしていても何も変わらないと気づいて",
+            "love_up": "ドライな相手",
+            "love_re": "諦めきれない",
+            "work_up": "新しい環境",
+            "work_re": "再就職",
+            "interpersonal_up": "思いがけない別れ",
+            "interpersonal_re": "ズルズルと続く",
+            "other_up": "引っ越し",
+            "other_re": "再挑戦"
+        }
+    ]
+}
