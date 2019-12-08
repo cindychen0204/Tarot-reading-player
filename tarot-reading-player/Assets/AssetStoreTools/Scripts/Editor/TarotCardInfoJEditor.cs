@@ -22,7 +22,7 @@ public class TarotCardInfoJEditor : EditorWindow
 
 
     private string newTarotCardName;
-    private int newTarotCardNumber;
+    private int newTarotCardNumber = -1;
     private string newTarotKeyword;
 
     //explanation
@@ -176,9 +176,9 @@ public class TarotCardInfoJEditor : EditorWindow
 
         EditorGUILayout.EndScrollView();
         EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
-        EditorGUILayout.LabelField("Tarot Cards : " + tarots.count, GUILayout.Width(100));
+        EditorGUILayout.LabelField("カードの数 : " + tarots.count, GUILayout.Width(100));
 
-        if (GUILayout.Button("New Card"))
+        if (GUILayout.Button("新しいカードを登録"))
         {
             state = State.ADD;
         }
@@ -212,7 +212,13 @@ public class TarotCardInfoJEditor : EditorWindow
 
     void DisplayBlankMainArea()
     {
-        EditorGUILayout.LabelField("TEST", GUILayout.ExpandHeight(true));
+        var noticeString = "\n ここは以下の情報を登録できます："
+                           + "\n\n [1]タロットカードの名前"
+                           + "\n\n [2]タロットカードの番号"
+                           + "\n\n [3]タロットカードのキーワード"
+                           + "\n\n [4]タロットカードの解釈（正逆位全部で10項目）"
+                           + "\n\n [4]タロットカードの応用（正逆位全部で8項目）";
+        EditorGUILayout.LabelField(noticeString, GUILayout.ExpandHeight(true));
     }
 
     void DisplayEditMainArea()
@@ -223,6 +229,8 @@ public class TarotCardInfoJEditor : EditorWindow
         tarots.TarotCard(selectedTarot).number = int.Parse(EditorGUILayout.TextField(new GUIContent(cardNumber), tarots.TarotCard(selectedTarot).number.ToString()));
         EditorGUILayout.Space();
         tarots.TarotCard(selectedTarot).keyword = EditorGUILayout.TextField(new GUIContent(keyword), tarots.TarotCard(selectedTarot).keyword);
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
         EditorGUILayout.Space();
         tarots.TarotCard(selectedTarot).curSituation_up = EditorGUILayout.TextField(new GUIContent(currentSituation + upright + semicolon), tarots.TarotCard(selectedTarot).curSituation_up);
         tarots.TarotCard(selectedTarot).curSituation_re = EditorGUILayout.TextField(new GUIContent(currentSituation + reverse + semicolon), tarots.TarotCard(selectedTarot).curSituation_re);
@@ -238,6 +246,8 @@ public class TarotCardInfoJEditor : EditorWindow
         EditorGUILayout.Space();
         tarots.TarotCard(selectedTarot).advice_up = EditorGUILayout.TextField(new GUIContent(advice + upright + semicolon), tarots.TarotCard(selectedTarot).advice_up);
         tarots.TarotCard(selectedTarot).advice_re = EditorGUILayout.TextField(new GUIContent(advice + reverse + semicolon), tarots.TarotCard(selectedTarot).advice_re);
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
         EditorGUILayout.Space();
         tarots.TarotCard(selectedTarot).love_up = EditorGUILayout.TextField(new GUIContent(love + upright + semicolon), tarots.TarotCard(selectedTarot).love_up);
         tarots.TarotCard(selectedTarot).love_re = EditorGUILayout.TextField(new GUIContent(love + reverse + semicolon), tarots.TarotCard(selectedTarot).love_re);
@@ -258,7 +268,9 @@ public class TarotCardInfoJEditor : EditorWindow
         {
             tarots.SortTarotNumber();
             EditorUtility.SetDirty(tarots);
-            SaveAsJsonFile();
+
+            var tarot = tarots.TarotCard(selectedTarot);
+            SaveAsJsonFile(tarot);
             state = State.BLANK;
         }
 
@@ -270,20 +282,15 @@ public class TarotCardInfoJEditor : EditorWindow
         }
     }
 
-    void SaveAsJsonFile()
+    void SaveAsJsonFile(TarotCardInformation tarotInfo)
     {
-        var tarot = tarots.TarotCard(selectedTarot);
-        var tarotInfo = new TarotCardInformation(tarot.cardName,tarot.number,tarot.keyword,tarot.curSituation_up, tarot.curSituation_re, tarot.feelings_up,
-                        tarot.feelings_re,tarot.cause_up, tarot.cause_re, tarot.feelings_up, tarot.feelings_re,tarot.advice_up, tarot.advice_re,
-                        tarot.love_up, tarot.love_re, tarot.work_up, tarot.work_re,tarot.interpersonal_up, tarot.interpersonal_re, tarot.other_up,tarot.other_re);
-
         var list = new List<TarotCardInformation>();
         list.Add(tarotInfo);
         TarotInformations TarotInformations = new TarotInformations();
         TarotInformations.TarotCard = list.ToArray();
 
         var jsonString = JsonUtility.ToJson(TarotInformations, true);
-        var filepath = Path.Combine(PROJECT_PATH, tarotFileList[tarot.number]);
+        var filepath = Path.Combine(PROJECT_PATH, tarotFileList[tarotInfo.number] + ".txt");
 
         using (var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write))
         {
@@ -305,6 +312,8 @@ public class TarotCardInfoJEditor : EditorWindow
         newTarotCardNumber = Convert.ToInt32(EditorGUILayout.TextField(new GUIContent(cardNumber), newTarotCardNumber.ToString()));
         newTarotKeyword = EditorGUILayout.TextField(new GUIContent(keyword), newTarotKeyword);
         EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
         curSituation_up = EditorGUILayout.TextField(new GUIContent(currentSituation + upright + semicolon), curSituation_up);
         curSituation_re = EditorGUILayout.TextField(new GUIContent(currentSituation + reverse + semicolon), curSituation_re);
         EditorGUILayout.Space();
@@ -320,6 +329,8 @@ public class TarotCardInfoJEditor : EditorWindow
         advice_up = EditorGUILayout.TextField(new GUIContent(advice + upright + semicolon), advice_up);
         advice_re = EditorGUILayout.TextField(new GUIContent(advice + reverse + semicolon), advice_re);
         EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
         love_up = EditorGUILayout.TextField(new GUIContent(love + upright + semicolon), love_up);
         love_re = EditorGUILayout.TextField(new GUIContent(love + reverse + semicolon), love_re);
         EditorGUILayout.Space();
@@ -334,19 +345,45 @@ public class TarotCardInfoJEditor : EditorWindow
 
         EditorGUILayout.Space();
 
-        if(GUILayout.Button("Done", GUILayout.Width(100)))
+        if (GUILayout.Button("Jsonファイルを作成して保存", GUILayout.Width(200), GUILayout.Height(100)))
         {
             var tarot = new TarotCardInformation(newTarotCardName, newTarotCardNumber, newTarotKeyword,
                 curSituation_up, curSituation_re, feelings_up, feelings_re,
                 cause_up, cause_re, future_up, future_re, advice_up, advice_re, love_up, love_re,
                 work_up, work_re, interpersonal_up, interpersonal_re, other_up, other_re);
+            SaveAsJsonFile(tarot);
             tarots.Add(tarot);
             tarots.SortTarotNumber();
-
-            newTarotCardName = string.Empty;
-            newTarotCardNumber = 0;
             EditorUtility.SetDirty(tarots);
             state = State.BLANK;
+            ResetParameters();
         }
+    }
+
+    void ResetParameters()
+    {
+        newTarotCardName = string.Empty;
+        newTarotCardNumber = -1;
+        newTarotKeyword = string.Empty;
+
+        curSituation_up = string.Empty;
+        curSituation_re = string.Empty;
+        feelings_up = string.Empty;
+        feelings_re = string.Empty;
+        cause_up = string.Empty;
+        cause_re = string.Empty;
+        future_up = string.Empty;
+        future_re = string.Empty;
+        advice_up = string.Empty;
+        advice_re = string.Empty;
+
+        love_up = string.Empty;
+        love_re = string.Empty;
+        work_up = string.Empty;
+        work_re = string.Empty;
+        interpersonal_up = string.Empty;
+        interpersonal_re = string.Empty;
+        other_up = string.Empty;
+        other_re = string.Empty;
     }
 }
