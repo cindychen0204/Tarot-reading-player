@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using NUnit.Framework;
 using TarotReadingPlayer.Detection;
 using UnityEditor;
 using UnityEngine;
@@ -68,6 +70,32 @@ public class TarotCardInfoJEditor : EditorWindow
 
     private TarotCardDatabase tarots;
     private Vector2 scrollPos;
+
+    private List<string> tarotFileList = new List<string>()
+    {
+        "0_the_fool",
+        "1_the_magician",
+        "2_the_high_priestess",
+        "3_the_empress",
+        "4_the_emperor",
+        "5_the_hierophant",
+        "6_the_lovers",
+        "7_the_chariot",
+        "8_strength",
+        "9_the_hermit",
+        "10_wheel_of_fortune",
+        "11_justice",
+        "12_the_hanged_man",
+        "13_death",
+        "14_temperance",
+        "15_the_devil",
+        "16_the_tower",
+        "17_the_star",
+        "18_the_moon",
+        "19_the_sun",
+        "20_judgement",
+        "21_the_world"
+    };
 
     [MenuItem("Tarot Reading Player/Open TarotCardInfo Editor", false, 1)]
     public static void Initialize()
@@ -226,13 +254,49 @@ public class TarotCardInfoJEditor : EditorWindow
 
 
         EditorGUILayout.Space();
+        if (GUILayout.Button("Jsonファイルを作成して保存", GUILayout.Width(200), GUILayout.Height(100)))
+        {
+            tarots.SortTarotNumber();
+            EditorUtility.SetDirty(tarots);
+            SaveAsJsonFile();
+            state = State.BLANK;
+        }
 
-        if(GUILayout.Button("設定", GUILayout.Width(100)))
+        if (GUILayout.Button("設定", GUILayout.Width(100)))
         {
             tarots.SortTarotNumber();
             EditorUtility.SetDirty(tarots);
             state = State.BLANK;
         }
+    }
+
+    void SaveAsJsonFile()
+    {
+        var tarot = tarots.TarotCard(selectedTarot);
+        var tarotInfo = new TarotCardInformation(tarot.cardName,tarot.number,tarot.keyword,tarot.curSituation_up, tarot.curSituation_re, tarot.feelings_up,
+                        tarot.feelings_re,tarot.cause_up, tarot.cause_re, tarot.feelings_up, tarot.feelings_re,tarot.advice_up, tarot.advice_re,
+                        tarot.love_up, tarot.love_re, tarot.work_up, tarot.work_re,tarot.interpersonal_up, tarot.interpersonal_re, tarot.other_up,tarot.other_re);
+
+        var list = new List<TarotCardInformation>();
+        list.Add(tarotInfo);
+        TarotInformations TarotInformations = new TarotInformations();
+        TarotInformations.TarotCard = list.ToArray();
+
+        var jsonString = JsonUtility.ToJson(TarotInformations, true);
+        var filepath = Path.Combine(PROJECT_PATH, tarotFileList[tarot.number]);
+
+        using (var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write))
+        {
+            using (var r = new StreamWriter(fs))
+            {
+                r.Write(jsonString);
+            }
+        }
+
+        Selection.activeObject = AssetDatabase.LoadMainAssetAtPath(filepath);
+        AssetDatabase.ImportAsset(filepath);
+        EditorGUIUtility.PingObject(Selection.activeObject);
+
     }
 
     void DisplayAddMainArea()
