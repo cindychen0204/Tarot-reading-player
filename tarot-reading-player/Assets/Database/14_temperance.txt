@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "節制",
+            "number": 14,
+            "keyword": "反応",
+            "curSituation_up": "ものごとを調整すべき",
+            "curSituation_re": "まじり合わない運気",
+            "feelings_up": "心がオープンになっていてもとても素直",
+            "feelings_re": "人の意見を聞いているようで聞いていない",
+            "cause_up": "なんでもかんでも人の意見を取り組みすぎる",
+            "cause_re": "あらゆる面で結びつかない",
+            "future_up": "複数のものを一つにまとめるとき",
+            "future_re": "消化不良な状態",
+            "advice_up": "「ちょうどよい状態」を目指して",
+            "advice_re": "どんなもの（人）も否定的にとらえずに興味を持って",
+            "love_up": "順調に進む恋",
+            "love_re": "なかなｋ進展しない恋",
+            "work_up": "よい環境",
+            "work_re": "協調性がない",
+            "interpersonal_up": "交友関係が広がる",
+            "interpersonal_re": "心を開かない",
+            "other_up": "やりくりじょうず",
+            "other_re": "活用できない"
+        }
+    ]
+}

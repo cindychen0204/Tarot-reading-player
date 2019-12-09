@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "月",
+            "number": 18,
+            "keyword": "神秘",
+            "curSituation_up": "移ろいやすく不安定な運気",
+            "curSituation_re": "いろいろな意味で目覚めのとき",
+            "feelings_up": "気持ちがはっきりしない",
+            "feelings_re": "裏切り・秘密・隠しごと・嘘を見抜いていながらきづかないふりをしている",
+            "cause_up": "相手の行動や心理を深読みしている",
+            "cause_re": "隠しきれない真実",
+            "future_up": "見通しがつかない",
+            "future_re": "徐々に次の展開が見えてくる",
+            "advice_up": "今は深刻に取り合わず距離を置いて",
+            "advice_re": "目を覚まして現実を見て",
+            "love_up": "不誠実な態度",
+            "love_re": "偽りに気づく",
+            "work_up": "状況を把握できない",
+            "work_re": "状況が見えてくる",
+            "interpersonal_up": "信用できない",
+            "interpersonal_re": "偽りや本性を見抜く",
+            "other_up": "切ない",
+            "other_re": "危険回避"
+        }
+    ]
+}

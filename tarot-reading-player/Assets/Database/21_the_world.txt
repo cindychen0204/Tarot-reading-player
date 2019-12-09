@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "世界",
+            "number": 21,
+            "keyword": "完成",
+            "curSituation_up": "絶好調の運気",
+            "curSituation_re": "スランプ状態",
+            "feelings_up": "ひとつのことに没頭している",
+            "feelings_re": "まわりの目ばかり気にして実力を発揮できない",
+            "cause_up": "脇目もふらず一心にとり組み、まわりが見えていない",
+            "cause_re": "いざとなったら放り出そうという根性のなさ",
+            "future_up": "最高のハッピーエンド",
+            "future_re": "目標をはるかに下まわる結果",
+            "advice_up": "最後まで自分のペースで進めばOK",
+            "advice_re": "大きな目標の前に小さなことをひとつずつこなして",
+            "love_up": "相思相愛",
+            "love_re": "当たり前と化した恋愛関係",
+            "work_up": "天職",
+            "work_re": "行く末を懸念する",
+            "interpersonal_up": "長いつきあい",
+            "interpersonal_re": "これ以上の進展を望めない関係",
+            "other_up": "勝つ",
+            "other_re": "どうでもよくなる"
+        }
+    ]
+}

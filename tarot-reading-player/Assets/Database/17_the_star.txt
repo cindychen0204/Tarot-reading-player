@@ -1,0 +1,27 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "星",
+            "number": 17,
+            "keyword": "希望",
+            "curSituation_up": "希望の光が見えてくる",
+            "curSituation_re": "導きの星を見失う",
+            "feelings_up": "目指すべき目標が見つかる",
+            "feelings_re": "先に見通せず混乱する",
+            "cause_up": "掲げている目的や目標そのものが問題の種をはらんでいる",
+            "cause_re": "やっていることに無駄が多い",
+            "future_up": "明るい見通しがつく",
+            "future_re": "見通しが立たない",
+            "advice_up": "希望を持ち続けて",
+            "advice_re": "過去はすべて新井出して新たな目標を探して",
+            "love_up": "希望を持てる恋",
+            "love_re": "高すぎる理想",
+            "work_up": "才能で光り輝く",
+            "work_re": "失敗する",
+            "interpersonal_up": "人と接することで心がうるおう",
+            "interpersonal_re": "無駄話が多く実りがない",
+            "other_up": "健康体",
+            "other_re": "心のうるおいを失う"
+        }
+    ]
+}
