@@ -9,6 +9,7 @@
 /tarot-reading-player/[Bb]uilds/
 /tarot-reading-player/[Ll]ogs/
 /tarot-reading-player/[Mm]emoryCaptures/
+/tarot-reading-player/App/
 
 # Never ignore Asset meta data
 !/tarot-reading-player/[Aa]ssets/**/*.meta
@@ -57,4 +58,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-

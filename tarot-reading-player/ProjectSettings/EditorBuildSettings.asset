@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/App/Scene/VuforiaARTest.unity
+    guid: cc7a016289109df47a3a35605d76ed8f
   m_configObjects: {}
