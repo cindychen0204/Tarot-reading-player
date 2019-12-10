@@ -6,6 +6,7 @@ using Vuforia;
 
 public class SimpleCloudHandler : MonoBehaviour, IObjectRecoEventHandler
 {
+    [SerializeField]
     private CloudRecoBehaviour mCloudRecoBehaviour;
     private bool mIsScanning = false;
     private string mTargetMetadata = "";
@@ -50,7 +51,7 @@ public class SimpleCloudHandler : MonoBehaviour, IObjectRecoEventHandler
         // Display current 'scanning' status
         GUI.Box(new Rect(100, 100, 200, 50), mIsScanning ? "Scanning" : "Not scanning");
         // Display metadata of latest detected cloud-target
-        GUI.Box(new Rect(100, 200, 200, 50), "Metadata: " + mTargetMetadata);
+        GUI.Box(new Rect(100, 200, 800, 400), "Metadata: " + mTargetMetadata);
         // If not scanning, show button
         // so that user can restart cloud scanning
         if (!mIsScanning)
@@ -59,6 +60,7 @@ public class SimpleCloudHandler : MonoBehaviour, IObjectRecoEventHandler
             {
                 // Restart TargetFinder
                 mCloudRecoBehaviour.CloudRecoEnabled = true;
+                mTargetMetadata = "";
             }
         }
     }
@@ -66,12 +68,6 @@ public class SimpleCloudHandler : MonoBehaviour, IObjectRecoEventHandler
     // Use this for initialization 
     void Start()
     {
-        // register this event handler at the cloud reco behaviour 
-        mCloudRecoBehaviour = GetComponent<CloudRecoBehaviour>();
-
-        if (mCloudRecoBehaviour)
-        {
-            mCloudRecoBehaviour.RegisterEventHandler(this);
-        }
+        mCloudRecoBehaviour.RegisterEventHandler(this);
     }
 }
