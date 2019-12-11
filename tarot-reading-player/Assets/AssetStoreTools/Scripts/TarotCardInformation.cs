@@ -31,8 +31,27 @@ namespace TarotReadingPlayer.Detection
         public string other_up;
         public string other_re;
 
-
-        public TarotCardInformation(string name, int nbr, string ky, string cur_u, string cur_r, string hum_u, string hum_r, string prob_u, string prob_r, string fu_u, string fu_r, string adv_u, string adv_r, string lv_u, string lv_r, string wk_u, string wk_r, string int_u, string int_r, string oth_u, string oth_r)
+        public TarotCardInformation(string name, 
+            int nbr,
+            string ky, 
+            string cur_u, 
+            string cur_r, 
+            string hum_u,
+            string hum_r, 
+            string prob_u, 
+            string prob_r, 
+            string fu_u,
+            string fu_r,
+            string adv_u, 
+            string adv_r, 
+            string lv_u,
+            string lv_r, 
+            string wk_u, 
+            string wk_r, 
+            string int_u, 
+            string int_r, 
+            string oth_u, 
+            string oth_r)
         {
             cardName = name;
             number = nbr;

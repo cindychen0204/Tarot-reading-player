@@ -25,11 +25,6 @@ public class TarotCardDatabase : ScriptableObject
         database.Remove(tarot);
     }
 
-    public void RemoveAt(int index)
-    {
-        database.RemoveAt(index);
-    }
-
     public int count
     {
         get { return database.Count; }
