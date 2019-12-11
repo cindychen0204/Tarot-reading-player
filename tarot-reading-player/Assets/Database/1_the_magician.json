@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "魔術師",
+            "cardEngName": "the_magician",
+            "number": 1,
+            "keyword": "創造力",
+            "curSituation_up": "スタートラインに立っている",
+            "curSituation_re": "立ち止まって考えなおすべきとき",
+            "feelings_up": "やりたいことがある",
+            "feelings_re": "迷いがある",
+            "cause_up": "根拠のない地震",
+            "cause_re": "もっと別の方法がある",
+            "future_up": "新たな展開が訪れる",
+            "future_re": "順調に進まない",
+            "advice_up": "人まかせにせず自分で考えて行動を",
+            "advice_re": "途中で放り出してはダメ",
+            "love_up": "理想の恋をかなえる",
+            "love_re": "都合よく利用される恋",
+            "work_up": "才能を発揮する",
+            "work_re": "仕事へのやる気が出ない",
+            "interpersonal_up": "高いコミュニケーション力",
+            "interpersonal_re": "優柔不断",
+            "other_up": "積極的",
+            "other_re": "消極的"
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "太陽",
+            "cardEngName": "the_sun",
+            "number": 19,
+            "keyword": "喜び",
+            "curSituation_up": "最高潮に高まる運気",
+            "curSituation_re": "かげりが出てくる運気",
+            "feelings_up": "努力をいとわず楽しんでいる",
+            "feelings_re": "覚悟ができておらず逃げ腰",
+            "cause_up": "あけっぴろげで飾りけのない態度が裏目に",
+            "cause_re": "考えかたが屈折していて素直になれない",
+            "future_up": "周囲の注目を浴びる",
+            "future_re": "思っていたほど注目されない",
+            "advice_up": "楽しんでいるうちに成功へと近づく",
+            "advice_re": "意味のない努力をしていることに気づいて",
+            "love_up": "恋の成就",
+            "love_re": "恋の行く末への不安",
+            "work_up": "成功を収める",
+            "work_re": "成功を実感できない",
+            "interpersonal_up": "隠しごとがない",
+            "interpersonal_re": "利害関係が気になる",
+            "other_up": "楽しい",
+            "other_re": "遠慮がち"
+        }
+    ]
+}

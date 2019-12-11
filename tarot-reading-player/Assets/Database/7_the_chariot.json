@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "戦車",
+            "cardEngName": "the_chariot",
+            "number": 7,
+            "keyword": "エネルギー",
+            "curSituation_up": "勢いに乗っている運気",
+            "curSituation_re": "コントロール不能の状況",
+            "feelings_up": "信念に基づいて行動している",
+            "feelings_re": "支離滅裂な思い",
+            "cause_up": "進展を急ぎすぎている",
+            "cause_re": "大事な選択を先送りしている",
+            "future_up": "スピーディな展開",
+            "future_re": "意見が合わず激しく衝突する",
+            "advice_up": "もっと勇気を出して",
+            "advice_re": "このままでは失敗しそうなので計画を見なおして",
+            "love_up": "一気に進む",
+            "love_re": "傷つけ合う関係",
+            "work_up": "課題に立ち向かう",
+            "work_re": "企画倒れ",
+            "interpersonal_up": "のりが合う",
+            "interpersonal_re": "意見が合わない",
+            "other_up": "忙しい",
+            "other_re": "募る疲労感"
+        }
+    ]
+}

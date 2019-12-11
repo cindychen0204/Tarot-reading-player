@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "愚者",
+            "cardEngName": "the_fool",
+            "number": 0,
+            "keyword": "自由",
+            "curSituation_up": "新しいなにかがスタートする",
+            "curSituation_re": "明確な方針がない",
+            "feelings_up": "新しい考えが生まれる",
+            "feelings_re": "まだ決めたくない",
+            "cause_up": "考えがまとまっていない",
+            "cause_re": "自分の都合ばかり考えた身勝手な態度",
+            "future_up": "新たなはじまり",
+            "future_re": "しばらく先の見えない日々が続く",
+            "advice_up": "型にはまらない発想を心がける",
+            "advice_re": "きちんと🅂責任感を持たないと信頼を失う原因",
+            "love_up": "新たな出会い",
+            "love_re": "煮えきらない態度",
+            "work_up": "新たなひらめき",
+            "work_re": "フリーランスで働く",
+            "interpersonal_up": "人にふりまわされず我が道をゆく",
+            "interpersonal_re": "単独行動で協調性を欠く",
+            "other_up": "不戦勝",
+            "other_re": "逃げ腰"
+        }
+    ]
+}

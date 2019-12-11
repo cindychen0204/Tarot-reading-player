@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "運命の車輪",
+            "cardEngName": "wheel_of_fortune",
+            "number": 10,
+            "keyword": "宿命",
+            "curSituation_up": "トントン拍子にうまくいく運気",
+            "curSituation_re": "すべてが空まわりの状態",
+            "feelings_up": "直感的に正解を見抜ける",
+            "feelings_re": "「間違っていないはずなのになぜ」という落胆",
+            "cause_up": "ラッキーに期待しすぎている",
+            "cause_re": "裏目に出ていることに気づいていない",
+            "future_up": "運がめぐっている",
+            "future_re": "あっという間に不利な形勢に追い込まれる",
+            "advice_up": "直感的にピンときた答えが正解",
+            "advice_re": "「自分が」と前にでないでスマートなふるまいを",
+            "love_up": "運命を感じる出会い",
+            "love_re": "つかの間の恋",
+            "work_up": "チャンスのすべてをつかむ",
+            "work_re": "不向きなことをやらされる",
+            "interpersonal_up": "よい感じの人",
+            "interpersonal_re": "違和感",
+            "other_up": "運命的な展開",
+            "other_re": "つまらない"
+        }
+    ]
+}
