@@ -71,32 +71,6 @@ public class TarotCardInformationEditor : EditorWindow
     private static string cardNumber = "カード番号: ";
     private static string keyword = "キーワード: ";
 
-    private List<string> tarotFileList = new List<string>()
-    {
-        "0_the_fool",
-        "1_the_magician",
-        "2_the_high_priestess",
-        "3_the_empress",
-        "4_the_emperor",
-        "5_the_hierophant",
-        "6_the_lovers",
-        "7_the_chariot",
-        "8_strength",
-        "9_the_hermit",
-        "10_wheel_of_fortune",
-        "11_justice",
-        "12_the_hanged_man",
-        "13_death",
-        "14_temperance",
-        "15_the_devil",
-        "16_the_tower",
-        "17_the_star",
-        "18_the_moon",
-        "19_the_sun",
-        "20_judgement",
-        "21_the_world",
-        "TEST"
-    };
     #endregion
 
     [MenuItem("Tarot Reading Player/Open TarotCardInfo Editor", false, 1)]
