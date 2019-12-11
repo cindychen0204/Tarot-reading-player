@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "司祭",
+            "cardEngName": "the_hierophant",
             "number": 5,
             "keyword": "モラル",
             "curSituation_up": "平穏無事な運気",

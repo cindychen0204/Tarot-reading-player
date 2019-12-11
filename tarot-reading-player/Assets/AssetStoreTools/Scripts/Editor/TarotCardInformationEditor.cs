@@ -25,6 +25,7 @@ public class TarotCardInformationEditor : EditorWindow
 
     #region タロットカードのプロパティ
     private string newTarotCardName;
+    private string newTarotCardEnglishName;
     private int newTarotCardNumber = -1;
     private string newTarotKeyword;
 
@@ -63,7 +64,9 @@ public class TarotCardInformationEditor : EditorWindow
     private static string upright = " (正位)";
     private static string reverse = " (逆位)";
     private static string semicolon = " : ";
-
+    
+    //保存のファイル名になる
+    private static string cardEnglishName = "英語名称（スペースを\"_\"に）: ";
     private static string cardName = "カード名: ";
     private static string cardNumber = "カード番号: ";
     private static string keyword = "キーワード: ";
@@ -219,6 +222,8 @@ public class TarotCardInformationEditor : EditorWindow
         EditorGUILayout.Space();
         selectCard.cardName = EditorGUILayout.TextField(new GUIContent(cardName),selectCard.cardName);
         EditorGUILayout.Space();
+        selectCard.cardEngName = EditorGUILayout.TextField(new GUIContent(cardEnglishName), selectCard.cardEngName);
+        EditorGUILayout.Space();
         selectCard.number = int.Parse(EditorGUILayout.TextField(new GUIContent(cardNumber),selectCard.number.ToString()));
         EditorGUILayout.Space();
         selectCard.keyword = EditorGUILayout.TextField(new GUIContent(keyword),selectCard.keyword);
@@ -255,15 +260,13 @@ public class TarotCardInformationEditor : EditorWindow
         selectCard.other_re = EditorGUILayout.TextField(new GUIContent(other + reverse + semicolon),selectCard.other_re);
         EditorGUILayout.Space();
 
-       
-
         if (GUILayout.Button("Jsonファイルを作成して保存", GUILayout.Width(200), GUILayout.Height(100)))
         {
             tarotDatabase.SortTarotNumber();
             EditorUtility.SetDirty(tarotDatabase);
 
             var jsonString =  CreateTarotInformationJsonString(selectCard);
-            var filename = tarotFileList[selectCard.number] + ".txt";
+            var filename = selectCard.number + "_" + selectCard.cardEngName + ".txt";
 
             SaveJsonFile(jsonString, filename);
             state = State.BLANK;
@@ -320,6 +323,7 @@ public class TarotCardInformationEditor : EditorWindow
     void DisplayAddMainArea()
     {
         newTarotCardName = EditorGUILayout.TextField(new GUIContent(cardName), newTarotCardName);
+        newTarotCardEnglishName = EditorGUILayout.TextField(new GUIContent(cardEnglishName), newTarotCardEnglishName);
         newTarotCardNumber = Convert.ToInt32(EditorGUILayout.TextField(new GUIContent(cardNumber), newTarotCardNumber.ToString()));
         newTarotKeyword = EditorGUILayout.TextField(new GUIContent(keyword), newTarotKeyword);
         EditorGUILayout.Space();
@@ -359,6 +363,7 @@ public class TarotCardInformationEditor : EditorWindow
         if (GUILayout.Button("Jsonファイルを作成して保存", GUILayout.Width(200), GUILayout.Height(100)))
         {
             var tarot = new TarotCardInformation(newTarotCardName,
+                newTarotCardEnglishName,
                 newTarotCardNumber, 
                 newTarotKeyword,
                 currentSituation_up, 
@@ -381,7 +386,7 @@ public class TarotCardInformationEditor : EditorWindow
                 other_re);
 
             var jsonString = CreateTarotInformationJsonString(tarot);
-            var filename = tarotFileList[tarot.number] + ".txt";
+            var filename = tarot.number + "_"+ tarot.cardEngName + ".txt";
             SaveJsonFile(jsonString, filename);
 
             tarotDatabase.Add(tarot);
@@ -395,6 +400,7 @@ public class TarotCardInformationEditor : EditorWindow
     void ResetParameters()
     {
         newTarotCardName = string.Empty;
+        newTarotCardEnglishName = string.Empty;
         newTarotCardNumber = -1;
         newTarotKeyword = string.Empty;
         currentSituation_up = string.Empty;

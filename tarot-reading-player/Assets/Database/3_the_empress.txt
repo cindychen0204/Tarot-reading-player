@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "女帝",
+            "cardEngName": "the_empress",
             "number": 3,
             "keyword": "愛",
             "curSituation_up": "物心ともに余裕のある状況",

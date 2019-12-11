@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "魔術師",
+            "cardEngName": "the_magician",
             "number": 1,
             "keyword": "創造力",
             "curSituation_up": "スタートラインに立っている",

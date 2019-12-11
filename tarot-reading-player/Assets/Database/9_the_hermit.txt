@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "隠者",
+            "cardEngName": "the_hermit",
             "number": 9,
             "keyword": "探究",
             "curSituation_up": "現状維持の運気",

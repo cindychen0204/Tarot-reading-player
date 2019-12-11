@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "塔",
+            "cardEngName": "the_tower",
             "number": 16,
             "keyword": "破壊",
             "curSituation_up": "変化の運気",

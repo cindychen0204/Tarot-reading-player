@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "恋人",
+            "cardEngName": "the_lovers",
             "number": 6,
             "keyword": "心地よさ",
             "curSituation_up": "楽しい時期",

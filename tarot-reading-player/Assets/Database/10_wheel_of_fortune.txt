@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "運命の車輪",
+            "cardEngName": "wheel_of_fortune",
             "number": 10,
             "keyword": "宿命",
             "curSituation_up": "トントン拍子にうまくいく運気",

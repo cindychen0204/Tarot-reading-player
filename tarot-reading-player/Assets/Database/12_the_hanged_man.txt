@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "吊るし人",
+            "cardEngName": "the_hanged_man",
             "number": 12,
             "keyword": "静止",
             "curSituation_up": "自分の一存ではどうしようもない状況",

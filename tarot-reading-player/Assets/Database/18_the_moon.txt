@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "月",
+            "cardEngName": "the_moon",
             "number": 18,
             "keyword": "神秘",
             "curSituation_up": "移ろいやすく不安定な運気",

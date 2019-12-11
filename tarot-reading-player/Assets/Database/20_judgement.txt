@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "審判",
+            "cardEngName": "judgement",
             "number": 20,
             "keyword": "解放",
             "curSituation_up": "ターニングポイント",

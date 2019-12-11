@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "節制",
+            "cardEngName": "temperance",
             "number": 14,
             "keyword": "反応",
             "curSituation_up": "ものごとを調整すべき",

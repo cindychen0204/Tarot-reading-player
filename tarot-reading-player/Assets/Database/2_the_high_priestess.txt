@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "女司祭",
+            "cardEngName": "the_high_priestess",
             "number": 2,
             "keyword": "精神性",
             "curSituation_up": "すべてが整っている状態",

@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "悪魔",
+            "cardEngName": "the_devil",
             "number": 15,
             "keyword": "呪縛",
             "curSituation_up": "現状に甘んじている",

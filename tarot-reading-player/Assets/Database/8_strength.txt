@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "力",
+            "cardEngName": "strength",
             "number": 8,
             "keyword": "本質的な力",
             "curSituation_up": "正念場",

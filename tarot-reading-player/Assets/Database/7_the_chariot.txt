@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "戦車",
+            "cardEngName": "the_chariot",
             "number": 7,
             "keyword": "エネルギー",
             "curSituation_up": "勢いに乗っている運気",

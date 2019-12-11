@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "愚者",
+            "cardEngName": "the_fool",
             "number": 0,
             "keyword": "自由",
             "curSituation_up": "新しいなにかがスタートする",

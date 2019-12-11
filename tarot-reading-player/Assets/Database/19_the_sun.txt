@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "太陽",
+            "cardEngName": "the_sun",
             "number": 19,
             "keyword": "喜び",
             "curSituation_up": "最高潮に高まる運気",

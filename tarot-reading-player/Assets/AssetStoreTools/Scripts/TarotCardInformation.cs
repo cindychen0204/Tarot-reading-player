@@ -6,6 +6,7 @@ namespace TarotReadingPlayer.Detection
     public class TarotCardInformation
     {
         public string cardName;
+        public string cardEngName;
         public int number;
         public string keyword;
 
@@ -32,6 +33,7 @@ namespace TarotReadingPlayer.Detection
         public string other_re;
 
         public TarotCardInformation(string name, 
+            string engName,
             int nbr,
             string ky, 
             string cur_u, 
@@ -55,6 +57,7 @@ namespace TarotReadingPlayer.Detection
         {
             cardName = name;
             number = nbr;
+            cardEngName = engName;
             keyword = ky;
             curSituation_up = cur_u;
             curSituation_re = cur_r;
@@ -66,7 +69,6 @@ namespace TarotReadingPlayer.Detection
             future_re = fu_r;
             advice_up = adv_u;
             advice_re = adv_r;
-
             love_up = lv_u;
             love_re = lv_r;
             work_up = wk_u;

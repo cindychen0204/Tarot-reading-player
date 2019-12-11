@@ -2,6 +2,7 @@
     "TarotCard": [
         {
             "cardName": "死",
+            "cardEngName": "death",
             "number": 13,
             "keyword": "さだめ",
             "curSituation_up": "なにかが終わりを迎える運気",
