@@ -18,7 +18,8 @@ public class TarotCardInformationEditor : EditorWindow
     private State state;
     private int selectedCard;
     private static string PROJECT_PATH = @"Assets/Database";
-    private static string Database_PATH = @"Assets/Database/TarotDB.asset";
+    private static string CLOUDSTOREAGEUSE_PATH = @"Assets/Database/Cloud";
+    private static string DATABASE_PATH = @"Assets/Database/TarotDB.asset";
 
     private TarotCardDatabase tarotDatabase;
     private Vector2 scrollPos;
@@ -100,7 +101,7 @@ public class TarotCardInformationEditor : EditorWindow
 
     void LoadDatabase()
     {
-        tarotDatabase = (TarotCardDatabase) AssetDatabase.LoadAssetAtPath(Database_PATH, typeof(TarotCardDatabase));
+        tarotDatabase = (TarotCardDatabase) AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabase));
 
         if (tarotDatabase == null)
         {
@@ -117,7 +118,7 @@ public class TarotCardInformationEditor : EditorWindow
         }
 
         tarotDatabase = ScriptableObject.CreateInstance<TarotCardDatabase>();
-        AssetDatabase.CreateAsset(tarotDatabase, Database_PATH);
+        AssetDatabase.CreateAsset(tarotDatabase, DATABASE_PATH);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
@@ -149,6 +150,21 @@ public class TarotCardInformationEditor : EditorWindow
         if (GUILayout.Button("新しいカードを登録"))
         {
             state = State.ADD;
+        }
+
+        if (GUILayout.Button("一括ファイル生成"))
+        {
+            for (int cnt = 0; cnt < tarotDatabase.count; cnt++)
+            {
+                //Cloud use
+                var cardInfo = tarotDatabase.TarotCard(cnt).cardEngName;
+                var filename = tarotDatabase.TarotCard(cnt).number + "_" + cardInfo + ".txt";
+                SaveCloudUseFile(cardInfo, filename);
+
+                var jsonString = CreateTarotInformationJsonString(tarotDatabase.TarotCard(cnt));
+                filename = tarotDatabase.TarotCard(cnt).number + "_" + tarotDatabase.TarotCard(cnt).cardEngName + ".json";
+                SaveFile(jsonString, filename);
+            }
         }
 
         EditorGUILayout.EndHorizontal();
@@ -239,10 +255,15 @@ public class TarotCardInformationEditor : EditorWindow
             tarotDatabase.SortTarotNumber();
             EditorUtility.SetDirty(tarotDatabase);
 
-            var jsonString =  CreateTarotInformationJsonString(selectCard);
-            var filename = selectCard.number + "_" + selectCard.cardEngName + ".txt";
+            //Cloud use
+            var cardInfo = selectCard.cardEngName;
+            var filename = cardInfo + ".txt";
+            SaveCloudUseFile(cardInfo, filename);
 
-            SaveJsonFile(jsonString, filename);
+            var jsonString =  CreateTarotInformationJsonString(selectCard);
+            filename = selectCard.number + "_" + selectCard.cardEngName + ".json";
+            SaveFile(jsonString, filename);
+
             state = State.BLANK;
         }
 
@@ -258,7 +279,7 @@ public class TarotCardInformationEditor : EditorWindow
 
         if (GUILayout.Button("このカード削除", GUILayout.Width(100)))
         {
-            Debug.Log("Deleted data from database:"+ tarotFileList[selectCard.number]);
+            Debug.Log("Deleted data from database:"+ selectCard.cardEngName);
             tarotDatabase.Remove(selectCard);
             tarotDatabase.SortTarotNumber();
             EditorUtility.SetDirty(tarotDatabase);
@@ -276,22 +297,36 @@ public class TarotCardInformationEditor : EditorWindow
         return JsonUtility.ToJson(TarotInformations, true);
     }
 
-    void SaveJsonFile(string json, string filename)
+    void SaveFile(string content, string filename)
     {
-        //Vuforia cloud only accept .txt file
         var filepath = Path.Combine(PROJECT_PATH, filename);
 
         using (var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write))
         {
             using (var r = new StreamWriter(fs))
             {
-                r.Write(json);
+                r.Write(content);
             }
         }
 
-        Selection.activeObject = AssetDatabase.LoadMainAssetAtPath(filepath);
         AssetDatabase.ImportAsset(filepath);
+        Selection.activeObject = AssetDatabase.LoadMainAssetAtPath(filepath);
         EditorGUIUtility.PingObject(Selection.activeObject);
+    }
+
+    void SaveCloudUseFile(string content, string filename)
+    {
+        //Vuforia cloud only accept .txt file
+        var filepath = Path.Combine(CLOUDSTOREAGEUSE_PATH, filename);
+
+        using (var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write))
+        {
+            using (var r = new StreamWriter(fs))
+            {
+                r.Write(content);
+            }
+        }
+        AssetDatabase.ImportAsset(filepath);
     }
 
     void DisplayAddMainArea()
@@ -359,9 +394,14 @@ public class TarotCardInformationEditor : EditorWindow
                 other_up, 
                 other_re);
 
+            //Cloud use
+            var cardInfo = tarot.cardEngName;
+            var filename = cardInfo + ".txt";
+            SaveCloudUseFile(cardInfo, filename);
+
             var jsonString = CreateTarotInformationJsonString(tarot);
-            var filename = tarot.number + "_"+ tarot.cardEngName + ".txt";
-            SaveJsonFile(jsonString, filename);
+            filename = tarot.number + "_" + tarot.cardEngName + ".json";
+            SaveFile(jsonString, filename);
 
             tarotDatabase.Add(tarot);
             tarotDatabase.SortTarotNumber();
