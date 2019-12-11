@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
-
 public class SimpleCloudHandler : MonoBehaviour, IObjectRecoEventHandler
 {
     [SerializeField]
