@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "塔",
+            "cardEngName": "the_tower",
+            "number": 16,
+            "keyword": "破壊",
+            "curSituation_up": "変化の運気",
+            "curSituation_re": "なにかが徐々に崩れていく",
+            "feelings_up": "変わりたいという思い",
+            "feelings_re": "変わりたくない",
+            "cause_up": "悪いものがあぶりだされているだけなので問題なし",
+            "cause_re": "動揺",
+            "future_up": "急展開を迎える",
+            "future_re": "このままの状態は続かない",
+            "advice_up": "今までと違うやりかたを試みて",
+            "advice_re": "壊れ行く宿命を止めることはできないと悟っている",
+            "love_up": "刺激的な恋",
+            "love_re": "ケンカのあとの後悔",
+            "work_up": "状況ががらりと変わる",
+            "work_re": "やりかたを変えられない",
+            "interpersonal_up": "感情の爆発",
+            "interpersonal_re": "感情の爆発",
+            "other_up": "大災害",
+            "other_re": "小さな災害"
+        }
+    ]
+}

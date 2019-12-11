@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "正義",
+            "cardEngName": "justice",
+            "number": 11,
+            "keyword": "バランス",
+            "curSituation_up": "運だけでは進めない",
+            "curSituation_re": "常識では切り抜けられない状況",
+            "feelings_up": "感情より事実を優先したい",
+            "feelings_re": "誰かに対して「間違っている」憤っている",
+            "cause_up": "正しいか否かだけを基準にした判断",
+            "cause_re": "虫のよい考えかたをしている",
+            "future_up": "現実に立ち向かっていく",
+            "future_re": "理不尽だと感じる事態に見舞われる",
+            "advice_up": "感情で判断せず事実関係だけを見つめて",
+            "advice_re": "都合のよい考え方はやめて",
+            "love_up": "対等な恋人関係",
+            "love_re": "打算的な交際",
+            "work_up": "正当な報酬や評価",
+            "work_re": "不当な報酬や評価",
+            "interpersonal_up": "ギブ・アンド・テイクの関係",
+            "interpersonal_re": "利益を優先する関係",
+            "other_up": "引き分け",
+            "other_re": "バランスが崩れることで起こる変化"
+        }
+    ]
+}

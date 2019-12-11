@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "審判",
+            "cardEngName": "judgement",
+            "number": 20,
+            "keyword": "解放",
+            "curSituation_up": "ターニングポイント",
+            "curSituation_re": "待てど暮らせど助けがこない状況",
+            "feelings_up": "解放感で清々しい気持ち",
+            "feelings_re": "閉塞感にさいなまれている",
+            "cause_up": "にせのチャンスに惑わされている",
+            "cause_re": "大事な場面で間に合わない",
+            "future_up": "諦めかけていたことが再始動",
+            "future_re": "決心がつかない",
+            "advice_up": "今という瞬間を大切に",
+            "advice_re": "ずっと避けてきたことに向き合って",
+            "love_up": "この人と思える相手",
+            "love_re": "実らない恋",
+            "work_up": "起死回生のチャンス",
+            "work_re": "報われない努力",
+            "interpersonal_up": "関係に決着をつける",
+            "interpersonal_re": "徐々に疎遠になる",
+            "other_up": "勝負運あり",
+            "other_re": "勝負運なし"
+        }
+    ]
+}

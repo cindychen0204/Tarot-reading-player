@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "皇帝",
+            "cardEngName": "the_emperor",
+            "number": 4,
+            "keyword": "社会",
+            "curSituation_up": "努力の結果がしっかりと実っている",
+            "curSituation_re": "努力が続かないとき",
+            "feelings_up": "確固たる自信がある",
+            "feelings_re": "虚勢をはっている",
+            "cause_up": "堂々としすぎていて隙がない",
+            "cause_re": "精神的に不安定",
+            "future_up": "揺るぎないポジションを築く",
+            "future_re": "掌握しきれない状況",
+            "advice_up": "常に堂々としたふるまいを",
+            "advice_re": "自分だけでなくまわりのことも考えて",
+            "love_up": "包容力のある人",
+            "love_re": "打算的",
+            "work_up": "確かなリーダーシップ",
+            "work_re": "覚悟が足りない",
+            "interpersonal_up": "信頼",
+            "interpersonal_re": "一方通行な関係",
+            "other_up": "たくましい",
+            "other_re": "崩れかけている"
+        }
+    ]
+}

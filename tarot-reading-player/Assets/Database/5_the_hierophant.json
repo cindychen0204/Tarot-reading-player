@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "司祭",
+            "cardEngName": "the_hierophant",
+            "number": 5,
+            "keyword": "モラル",
+            "curSituation_up": "平穏無事な運気",
+            "curSituation_re": "不本意な状況に追い込まれる",
+            "feelings_up": "誰か（なにか）をリスペクトｓじょている",
+            "feelings_re": "こんなはずでは不本意に思う",
+            "cause_up": "なにかを信じすぎてまわりが見えない",
+            "cause_re": "疑いの目で明いてを見ている",
+            "future_up": "相手の信頼を手に入れる",
+            "future_re": "相手に不信感を抱かれる",
+            "advice_up": "なにがあっても信念に貫いて",
+            "advice_re": "今まで信じてきたものを一度疑ってみて",
+            "love_up": "精神的な支えになる恋",
+            "love_re": "公にできない関係",
+            "work_up": "信頼関係で成り立つ仕事",
+            "work_re": "信用をなくす",
+            "interpersonal_up": "信頼関係の強さ",
+            "interpersonal_re": "信用ならない",
+            "other_up": "尊い",
+            "other_re": "秩序"
+        }
+    ]
+}

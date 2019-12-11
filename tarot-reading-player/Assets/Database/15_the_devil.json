@@ -1,0 +1,28 @@
+{
+    "TarotCard": [
+        {
+            "cardName": "悪魔",
+            "cardEngName": "the_devil",
+            "number": 15,
+            "keyword": "呪縛",
+            "curSituation_up": "現状に甘んじている",
+            "curSituation_re": "このままではいけないと現状から脱しようとする",
+            "feelings_up": "わかっていてもやめられない",
+            "feelings_re": "悪いことをしている自覚がない",
+            "cause_up": "理性が働いていない",
+            "cause_re": "本気で現状を変えようと思っていない",
+            "future_up": "誘惑される",
+            "future_re": "誘惑から逃れる",
+            "advice_up": "誘惑に打ち勝って",
+            "advice_re": "自分の心を信じて",
+            "love_up": "浮気する",
+            "love_re": "関係を改善しようと試みる",
+            "work_up": "仕事を辞められない",
+            "work_re": "やっと退職できそう",
+            "interpersonal_up": "弱みを握られる",
+            "interpersonal_re": "悪縁を断ちきる",
+            "other_up": "非常識",
+            "other_re": "常識や秩序を守ろうとする"
+        }
+    ]
+}
