@@ -262,11 +262,9 @@ public class TarotCardInformationEditor : EditorWindow
             tarotDatabase.SortTarotNumber();
             EditorUtility.SetDirty(tarotDatabase);
 
-            //var tarot = tarotDatabase.TarotCard(selectedCard);
             var jsonString =  CreateTarotInformationJsonString(selectCard);
-            
-
             var filename = tarotFileList[selectCard.number] + ".txt";
+
             SaveJsonFile(jsonString, filename);
             state = State.BLANK;
         }
@@ -288,7 +286,6 @@ public class TarotCardInformationEditor : EditorWindow
             tarotDatabase.SortTarotNumber();
             EditorUtility.SetDirty(tarotDatabase);
             state = State.BLANK;
-            return;
         }
 
     }
@@ -299,9 +296,7 @@ public class TarotCardInformationEditor : EditorWindow
         list.Add(tarotInfo);
         TarotInformations TarotInformations = new TarotInformations();
         TarotInformations.TarotCard = list.ToArray();
-
         return JsonUtility.ToJson(TarotInformations, true);
-
     }
 
     void SaveJsonFile(string json, string filename)
