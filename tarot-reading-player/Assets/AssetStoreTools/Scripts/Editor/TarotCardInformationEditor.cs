@@ -134,7 +134,7 @@ public class TarotCardInformationEditor : EditorWindow
         {
             EditorGUILayout.BeginHorizontal();
 
-            if (GUILayout.Button(tarotDatabase.TarotCard(cnt).number+" "+tarotDatabase.TarotCard(cnt).cardName, "box", GUILayout.ExpandWidth(true)))
+            if (GUILayout.Button(tarotDatabase.TarotCard(cnt).number + " " + tarotDatabase.TarotCard(cnt).cardName, "box", GUILayout.ExpandWidth(true)))
             {
                 selectedCard = cnt;
                 state = State.EDIT;
@@ -156,6 +156,9 @@ public class TarotCardInformationEditor : EditorWindow
         {
             for (int cnt = 0; cnt < tarotDatabase.count; cnt++)
             {
+                var progress = (float) cnt / tarotDatabase.count;
+                EditorUtility.DisplayProgressBar("ファイル作成中", tarotDatabase.TarotCard(cnt).cardEngName + ".txt",  progress);
+
                 //Cloud use
                 var cardInfo = tarotDatabase.TarotCard(cnt).cardEngName;
                 var filename = tarotDatabase.TarotCard(cnt).number + "_" + cardInfo + ".txt";
@@ -165,6 +168,7 @@ public class TarotCardInformationEditor : EditorWindow
                 filename = tarotDatabase.TarotCard(cnt).number + "_" + tarotDatabase.TarotCard(cnt).cardEngName + ".json";
                 SaveFile(jsonString, filename);
             }
+            EditorUtility.ClearProgressBar();
         }
 
         EditorGUILayout.EndHorizontal();
