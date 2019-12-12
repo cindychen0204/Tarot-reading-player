@@ -12,6 +12,9 @@ namespace TarotReadingPlayer.Detection
         private string targetMetadata = "";
         private Transform currentTrackingTransform;
 
+        [SerializeField]
+        Transform ARCamera;
+
         void Start()
         {
             cloudRecoBehaviour = GetComponent<CloudRecoBehaviour>();
@@ -45,12 +48,6 @@ namespace TarotReadingPlayer.Detection
         public void OnNewSearchResult(TargetFinder.TargetSearchResult targetSearchResult)
         {
             GameObject newImageTarget = Instantiate(ImageTargetTemplate.gameObject) as GameObject;
-            GameObject augmentation = null;
-            if (augmentation)
-            {
-                augmentation.transform.parent = newImageTarget.transform;
-                augmentation.name = targetMetadata;
-            }
             var cloudRecoSearchResult = (TargetFinder.CloudRecoSearchResult) targetSearchResult;
             targetMetadata = cloudRecoSearchResult.MetaData;
             newImageTarget.name = targetMetadata;
@@ -66,25 +63,38 @@ namespace TarotReadingPlayer.Detection
 
         void OnGUI()
         {
+            GUIStyle guiStyle = new GUIStyle(GUI.skin.box);
+            guiStyle.fontSize = 30;
             // Display current 'scanning' status
-            GUI.Box(new Rect(100, 100, 200, 50), isScanning ? "Scanning" : "Not scanning");
+            GUI.Box(new Rect(100, 100, 400, 100), isScanning ? "Scanning" : "Not scanning", guiStyle);
             // Display metadata of latest detected cloud-target
-            GUI.Box(new Rect(100, 200, 200, 100), "Metadata: " + targetMetadata);
+            GUI.Box(new Rect(100, 200, 400, 200), "Metadata: " + targetMetadata, guiStyle);
 
-            if (currentTrackingTransform.localPosition != null)
+            if (currentTrackingTransform!= null)
             {
-                GUI.Box(new Rect(100, 400, 200, 100), "Cube rotation \n  x:  " + currentTrackingTransform.rotation.x +
-                                                      " y: " + currentTrackingTransform.rotation.y + 
-                                                      " z: " + currentTrackingTransform.rotation.z + 
-                                                      " w: " + currentTrackingTransform.rotation.w);
+               
+                string situation = "";
+                var rotationX = ARCamera.rotation.eulerAngles.x - currentTrackingTransform.rotation.eulerAngles.x;
+                var rotationY = ARCamera.rotation.eulerAngles.y - currentTrackingTransform.rotation.eulerAngles.y;
+                var rotationZ = ARCamera.rotation.eulerAngles.z - currentTrackingTransform.rotation.eulerAngles.z;
+                if(Mathf.Abs(rotationY) < 30)
+                {
+                    situation = "正位";
+                }
+                else if(Mathf.Abs(180 - rotationY) < 30)
+                {
+                    situation = "逆位";
+                }
+                else
+                {
+                    situation = "カードを正しい方向に配置してください";
+                }
+
+                GUI.Box(new Rect(100, 400, 400, 200), "relative rotation \n  x:  " + rotationX +
+                                                      "\n  y: " + rotationY + 
+                                                      "\n  z: " + rotationZ, guiStyle );
+                GUI.Box(new Rect(100, 700, 400, 200), "Situation : ¥n" + situation, guiStyle );
             }
-            // If not scanning, show button
-            // so that user can restart cloud scanning
-
-            //// Restart TargetFinder
-            //cloudRecoBehaviour.CloudRecoEnabled = true;
-            //targetMetadata = "";
-
         }
     }
 }
