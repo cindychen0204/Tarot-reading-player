@@ -77,22 +77,22 @@ namespace TarotReadingPlayer.Detection
                 var rotationX = ARCamera.rotation.eulerAngles.x - currentTrackingTransform.rotation.eulerAngles.x;
                 var rotationY = ARCamera.rotation.eulerAngles.y - currentTrackingTransform.rotation.eulerAngles.y;
                 var rotationZ = ARCamera.rotation.eulerAngles.z - currentTrackingTransform.rotation.eulerAngles.z;
-                if(Mathf.Abs(rotationY) < 30)
+                if(Mathf.Abs(rotationY) < 90)
                 {
                     situation = "正位";
                 }
-                else if(Mathf.Abs(180 - rotationY) < 30)
+                else if(Mathf.Abs(180 - Mathf.Abs(rotationY)) < 90)
                 {
                     situation = "逆位";
                 }
                 else
                 {
-                    situation = "カードを正しい方向に配置してください";
+                    situation = "カードを正しい方向に配置してください, Y: " + Mathf.Abs(rotationY);
                 }
 
                 GUI.Box(new Rect(100, 400, 400, 200), "relative rotation \n  x:  " + rotationX +
                                                       "\n  y: " + rotationY + 
-                                                      "\n  z: " + rotationZ, guiStyle );
+                                                      "\n  z: " + rotationZ, guiStyle);
                 GUI.Box(new Rect(100, 700, 400, 200), "Situation : ¥n" + situation, guiStyle );
             }
         }
