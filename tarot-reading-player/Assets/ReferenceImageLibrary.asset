@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4955823937795352336
+  m_GuidHigh: 10833302796361148547
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5178664607919184671
+      m_GuidHigh: 6401590560491451030
+    m_SerializedTextureGuid:
+      m_GuidLow: 8067279318003071306
+      m_GuidHigh: 16392887116965175691
+    m_Size: {x: 0.05214815, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 0_the_fool
+    m_Texture: {fileID: 2800000, guid: 256db94abbcc6ff48b61c9c9fa3b7fe3, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4911504995034676516
+      m_GuidHigh: 7615169954354575511
+    m_SerializedTextureGuid:
+      m_GuidLow: 14385795776341260579
+      m_GuidHigh: 8663379552611264664
+    m_Size: {x: 0.05214815, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 1_the_magician
+    m_Texture: {fileID: 2800000, guid: 1422b9239d0ac7a498e8c673cd813a78, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5199431216946686320
+      m_GuidHigh: 9527765010429686941
+    m_SerializedTextureGuid:
+      m_GuidLow: 6621423125244513301
+      m_GuidHigh: 4269058157760138920
+    m_Size: {x: 0.053135406, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 2_the_high_priestess
+    m_Texture: {fileID: 2800000, guid: 27c18c1505405be4a8cec6aac6bd3e3b, type: 3}
