@@ -1,7 +1,59 @@
 ﻿using System;
 
-namespace TarotReadingPlayer.Detection
+namespace TarotReadingPlayer.Information
 {
+    public enum Spreads
+    {
+        Default,
+        OneOracle,
+        ThreeCards,
+        Alternatively,
+        Hexagram,
+        CelticCross,
+        Horseshoe,
+        Horoscope,
+        HeartSonar,
+        Calendar
+    }
+
+    public enum AppliedCase
+    {
+        Default,
+        Work,
+        Love,
+        Relations,
+        Others
+    }
+
+    public enum CardDirection
+    {
+        Default,
+        Upright,
+        Reversed
+    }
+
+    public enum CardReading
+    {
+        Default,
+        CurrentSituation,
+        Feelings,
+        Cause,
+        Future,
+        Advice
+    }
+
+    public enum ThreeCardsReadingMethods
+    {
+        Default,
+        //運の流れ
+        Past_Now_NearFuture,
+        //問題の対処法
+        Cause_Result_Advice,
+        //判断の仕方
+        Yes_Hold_No
+    }
+
+
     [Serializable]
     public class TarotCardInformation
     {

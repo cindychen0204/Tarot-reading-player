@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using TarotReadingPlayer.Information;
+using TarotReadingPlayer.Information.Reader;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 /// This component listens for images detected by the <c>XRImageTrackingSubsystem</c>
@@ -24,6 +28,10 @@ public class TrackedImageInfoManager : MonoBehaviour
     public Text text;
     ARTrackedImageManager trackedImageManager;
 
+    public SpreadReader SpreadReader;
+    public Dictionary<string, ARTrackedImage> tarotDictionary = new Dictionary<string, ARTrackedImage>();
+
+
     void Awake()
     {
         trackedImageManager = GetComponent<ARTrackedImageManager>();
@@ -41,15 +49,60 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void UpdateInfo(ARTrackedImage trackedImage)
     {
+        var cardName = trackedImage.referenceImage.name;
+        tarotDictionary.Add(cardName, trackedImage);
         var direction = DetectUprightAndReversed(trackedImage);
         text.text = string.Format(
             "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm\nDirection: {5}",
-            trackedImage.referenceImage.name,
+            cardName,
             trackedImage.trackingState,
             trackedImage.referenceImage.guid,
             trackedImage.referenceImage.size * 100f,
             trackedImage.size * 100f,
             direction);
+
+        //ワンオラクル
+        if (NecessaryCardNumber(SpreadReader.CurrentSpreads) == 1)
+        {
+            foreach (KeyValuePair<string, ARTrackedImage> tarot in tarotDictionary)
+            {
+                SpreadReader.ReadOneCard(tarot.Value);
+            }
+        }
+    }
+
+    int NecessaryCardNumber(Spreads currentSpreads)
+    {
+        //TODO
+        int number = 0;
+        switch (currentSpreads)
+        {
+            case Spreads.Default:
+                break;
+            case Spreads.OneOracle:
+                number = 1;
+                break;
+            case Spreads.ThreeCards:
+                break;
+            case Spreads.Alternatively:
+                break;
+            case Spreads.Hexagram:
+                break;
+            case Spreads.CelticCross:
+                break;
+            case Spreads.Horseshoe:
+                break;
+            case Spreads.Horoscope:
+                break;
+            case Spreads.HeartSonar:
+                break;
+            case Spreads.Calendar:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(currentSpreads), currentSpreads, null);
+        }
+
+        return number;
     }
 
     string DetectUprightAndReversed(ARTrackedImage trackedImage)
@@ -81,8 +134,6 @@ public class TrackedImageInfoManager : MonoBehaviour
     {
         foreach (var trackedImage in eventArgs.added)
         {
-            // Give the initial image a reasonable default scale
-            //trackedImage.transform.localScale = new Vector3(0.01f, 1f, 0.01f);
             UpdateInfo(trackedImage);
         }
     }
