@@ -41,19 +41,21 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void UpdateInfo(ARTrackedImage trackedImage)
     {
-        text.text = string.Format("{0} \ntrackingState: {1}\nGUID: { 2}\nReference size: {3} cm\nDetected size: { 4}cm\n Direcction: { 5}",
-        trackedImage.referenceImage.name,
-        trackedImage.trackingState,
-        trackedImage.referenceImage.guid,
-        trackedImage.referenceImage.size * 100f,
-        trackedImage.size * 100f,
-        DetectUprightAndReversed(trackedImage));
+        var direction = DetectUprightAndReversed(trackedImage);
+        text.text = string.Format(
+            "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm\nDirection: {5}",
+            trackedImage.referenceImage.name,
+            trackedImage.trackingState,
+            trackedImage.referenceImage.guid,
+            trackedImage.referenceImage.size * 100f,
+            trackedImage.size * 100f,
+            direction);
     }
 
     string DetectUprightAndReversed(ARTrackedImage trackedImage)
     {
         string cardDirection = "";
-        var rotationY = RelativeRotation(WorldSpaceCamera.transform, trackedImage.transform).y;
+        var rotationY = RelativeRotation(WorldSpaceCamera.transform.rotation.eulerAngles, trackedImage.transform.rotation.eulerAngles).y;
 
         if (Mathf.Abs(rotationY) < 90)
         {
@@ -70,9 +72,9 @@ public class TrackedImageInfoManager : MonoBehaviour
         return cardDirection;
     }
 
-    Vector3 RelativeRotation(Transform origin, Transform target)
+    Vector3 RelativeRotation(Vector3 origin, Vector3 target)
     {
-        return origin.rotation.eulerAngles - target.rotation.eulerAngles;
+        return origin - target;
     }
 
     void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
