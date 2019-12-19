@@ -52,23 +52,22 @@ public class TrackedImageInfoManager : MonoBehaviour
         var cardName = trackedImage.referenceImage.name;
         tarotDictionary.Add(cardName, trackedImage);
         var direction = DetectUprightAndReversed(trackedImage);
-        text.text = string.Format(
-            "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm\nDirection: {5}",
-            cardName,
-            trackedImage.trackingState,
-            trackedImage.referenceImage.guid,
-            trackedImage.referenceImage.size * 100f,
-            trackedImage.size * 100f,
-            direction);
-
-        //ワンオラクル
-        if (NecessaryCardNumber(SpreadReader.CurrentSpreads) == 1)
+        if(text != null)
         {
-            foreach (KeyValuePair<string, ARTrackedImage> tarot in tarotDictionary)
-            {
-                SpreadReader.ReadOneCard(tarot.Value);
-            }
+            text.text = string.Format(
+                "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm\nDirection: {5}",
+                cardName,
+                trackedImage.trackingState,
+                trackedImage.referenceImage.guid,
+                trackedImage.referenceImage.size * 100f,
+                trackedImage.size * 100f,
+                direction);
         }
+
+        Debug.Log("Detected one Card");
+        //ワンオラクル
+        SpreadReader.ReadOneCard(trackedImage, direction);
+        
     }
 
     int NecessaryCardNumber(Spreads currentSpreads)

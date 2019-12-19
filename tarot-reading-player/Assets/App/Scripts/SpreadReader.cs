@@ -16,15 +16,24 @@ namespace TarotReadingPlayer.Information.Reader
 
         public TarotCardDatabase tarotDatabase;
 
-        public void ReadOneCard(ARTrackedImage card)
+        public void ReadOneCard(ARTrackedImage card, string direction)
         {
+            Debug.Log("Search card..." + card.referenceImage.name);
             foreach (var tarotCard in tarotDatabase.database)
             {
-                if (tarotCard.cardEngName == card.referenceImage.name)
+                if (card.referenceImage.name.Contains(tarotCard.cardEngName))
                 {
-                    Debug.Log(tarotCard.keyword);
-                    Debug.Log(tarotCard.advice_re);
-                    Debug.Log(tarotCard.cause_re);
+                    var cardName = card.referenceImage.name;
+                    cardMessage.text = string.Format(
+                        "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm\nDirection: {5}\n Keyword: {6}\nAdvice: {7}",
+                        cardName,
+                        card.trackingState,
+                        card.referenceImage.guid,
+                        card.referenceImage.size * 100f,
+                        card.size * 100f,
+                        direction,
+                        tarotCard.keyword,
+                        tarotCard.advice_up);
                 }
             }
         }
