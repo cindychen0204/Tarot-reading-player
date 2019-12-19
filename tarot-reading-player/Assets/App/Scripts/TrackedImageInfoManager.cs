@@ -41,7 +41,6 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void UpdateInfo(ARTrackedImage trackedImage)
     {
-
         text.text = string.Format("{0} \ntrackingState: {1}\nGUID: { 2}\nReference size: {3} cm\nDetected size: { 4}cm\n Direcction: { 5}",
         trackedImage.referenceImage.name,
         trackedImage.trackingState,
@@ -49,13 +48,12 @@ public class TrackedImageInfoManager : MonoBehaviour
         trackedImage.referenceImage.size * 100f,
         trackedImage.size * 100f,
         DetectUprightAndReversed(trackedImage));
-
     }
 
     string DetectUprightAndReversed(ARTrackedImage trackedImage)
     {
         string cardDirection = "";
-        var rotationY = RelativeRoation(WorldSpaceCamera.transform, trackedImage.transform).y;
+        var rotationY = RelativeRotation(WorldSpaceCamera.transform, trackedImage.transform).y;
 
         if (Mathf.Abs(rotationY) < 90)
         {
@@ -69,11 +67,10 @@ public class TrackedImageInfoManager : MonoBehaviour
         {
             cardDirection = "カードを正しい向きに置いてください";
         }
-
         return cardDirection;
     }
 
-    Vector3 RelativeRoation(Transform origin, Transform target)
+    Vector3 RelativeRotation(Transform origin, Transform target)
     {
         return origin.rotation.eulerAngles - target.rotation.eulerAngles;
     }
