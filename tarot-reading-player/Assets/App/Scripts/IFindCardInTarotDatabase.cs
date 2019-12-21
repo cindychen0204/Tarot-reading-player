@@ -1,9 +1,12 @@
-﻿using System.Numerics;
+﻿using TarotReadingPlayer.Information.Editor;
+using UnityEngine;
 
 namespace TarotReadingPlayer.Information
 {
-    public interface FindCardInTarotDatabase
+    public interface IFindCardInTarotDatabase
     {
+        void RoadDatabase();
+
         Tarot FindCardAllInformation(string cardName);
 
         Tarot FindTarotCardByNameAndDirection(string cardName, CardDirection direction, Vector3 position);
