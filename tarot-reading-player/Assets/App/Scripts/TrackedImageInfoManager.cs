@@ -47,14 +47,13 @@ public class TrackedImageInfoManager : MonoBehaviour
         trackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
     }
 
-    //TODO
-    //どういう意味を確認して
+    //新しいカードが検出されるときに呼び出される
     void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        Debug.Log("eventArgs.added + " + eventArgs.added);
+        //Debug.Log("eventArgs.added + " + eventArgs.added);
         foreach (var trackedImage in eventArgs.added)
         {
-            Debug.Log("trackedImage + " + trackedImage);
+            Debug.Log("new card found : " + trackedImage.referenceImage.name);
             UpdateInfo(trackedImage);
         }
 
@@ -75,7 +74,7 @@ public class TrackedImageInfoManager : MonoBehaviour
                 direction);
         }
 
-        Debug.Log("Detected one Card");
+        //Debug.Log("Detected one Card");
         //ワンオラクル
         SpreadReader.ReadOneCard(trackedImage, direction);
         

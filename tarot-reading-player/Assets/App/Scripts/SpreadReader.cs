@@ -39,7 +39,7 @@ namespace TarotReadingPlayer.Information.Reader
 
         public void ReadOneCard(ARTrackedImage card, string direction)
         {
-            Debug.Log("Search card..." + card.referenceImage.name);
+            //Debug.Log("Search card..." + card.referenceImage.name);
             foreach (var tarotCard in tarotDatabase.database)
             {
                 if (card.referenceImage.name.Contains(tarotCard.cardEngName))
