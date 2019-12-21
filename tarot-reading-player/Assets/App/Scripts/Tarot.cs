@@ -1,6 +1,6 @@
-﻿using System.Numerics;
+﻿using UnityEngine;
 
-namespace TarotReadingPlayer.Information
+namespace TarotReadingPlayer.Information.Reader
 {
     public class Tarot
     {
@@ -44,7 +44,7 @@ namespace TarotReadingPlayer.Information
             EnglishName = englishName;
         }
 
-        public Tarot(string name, string engName, string keyword, CardDirection direction,  Vector3 position)
+        public Tarot(string name, string engName, string keyword, CardDirection direction, Vector3 position)
         {
             Name = name;
             EnglishName = engName;
@@ -70,8 +70,10 @@ namespace TarotReadingPlayer.Information
         /// <param name="work">仕事</param>
         /// <param name="interpersonal">対人関係</param>
         /// <param name="other">その他</param>
-        public Tarot(string name, string engName,  string keyword, CardDirection direction, Vector3 position, string currentSituation, string humanFeeling,
-            string problemCause, string future, string advice, string love, string work, string interpersonal, string other)
+        public Tarot(string name, string engName, string keyword, CardDirection direction, Vector3 position,
+            string currentSituation, string humanFeeling,
+            string problemCause, string future, string advice, string love, string work, string interpersonal,
+            string other)
         {
             Name = name;
             EnglishName = engName;
@@ -154,6 +156,5 @@ namespace TarotReadingPlayer.Information
             Other_Up = oth_u;
             Other_Re = oth_r;
         }
-
     }
 }

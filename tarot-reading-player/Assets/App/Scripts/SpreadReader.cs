@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TarotReadingPlayer.Information.Editor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR.ARFoundation;
 
 namespace TarotReadingPlayer.Information.Reader
 {
@@ -32,7 +30,7 @@ namespace TarotReadingPlayer.Information.Reader
 
         public Text cardMessage;
 
-        public TarotCardDatabase tarotDatabase;
+        public TarotCardDatabaseObject TarotDatabaseObject;
 
         public List<Tarot> detectCardList = new List<Tarot>();
 
@@ -41,6 +39,10 @@ namespace TarotReadingPlayer.Information.Reader
             currentSpread = spread;
         }
 
+        /// <summary>
+        /// カード情報を受け取り、設定されたスプレッドに対応させる
+        /// </summary>
+        /// <param name="tarotCard"></param>
         public void ReadCard(Tarot tarotCard)
         {
             detectCardList.Add(tarotCard);
@@ -54,12 +56,14 @@ namespace TarotReadingPlayer.Information.Reader
                     {
                         //TODO
                     }
+
                     break;
                 case Spreads.ThreeCards:
                     if (detectCardList.Count == 3)
                     {
                         ReadThreeCards();
                     }
+
                     break;
                 case Spreads.Alternatively:
                     break;
@@ -78,6 +82,9 @@ namespace TarotReadingPlayer.Information.Reader
             }
         }
 
+        /// <summary>
+        /// 位置違いにより、カードのそれぞれ該当する場所を判別
+        /// </summary>
         private void ReadThreeCards()
         {
             //TODO

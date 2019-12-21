@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -629,6 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldSpaceCamera: {fileID: 753283701}
   text: {fileID: 0}
+  trackedImageManager: {fileID: 1600087172}
   SpreadReader: {fileID: 1600087174}
 --- !u!114 &1600087174
 MonoBehaviour:
@@ -642,8 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb809ce3ecce67489a3ef665936aff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentSpreads: 1
-  mothod: 0
+  method: 0
   cardMessage: {fileID: 1338543044}
   tarotDatabase: {fileID: 11400000, guid: ac6ded5fcfd07aa49831610578f3e04b, type: 2}
 --- !u!1 &1962046672

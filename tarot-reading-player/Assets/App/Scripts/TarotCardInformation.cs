@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TarotReadingPlayer.Information
+namespace TarotReadingPlayer.Information.Editor
 {
     //Output
     public enum AppliedCase
@@ -11,7 +11,6 @@ namespace TarotReadingPlayer.Information
         Relations,
         Others
     }
-
 
     public enum CardReading
     {
@@ -26,14 +25,16 @@ namespace TarotReadingPlayer.Information
     public enum ThreeCardsReadingMethods
     {
         Default,
+
         //運の流れ
         Past_Now_NearFuture,
+
         //問題の対処法
         Cause_Result_Advice,
+
         //判断の仕方
         Yes_Hold_No
     }
-
 
     [Serializable]
     public class TarotCardInformation
@@ -65,27 +66,27 @@ namespace TarotReadingPlayer.Information
         public string other_up;
         public string other_re;
 
-        public TarotCardInformation(string name, 
+        public TarotCardInformation(string name,
             string engName,
             int nbr,
-            string ky, 
-            string cur_u, 
-            string cur_r, 
+            string ky,
+            string cur_u,
+            string cur_r,
             string hum_u,
-            string hum_r, 
-            string prob_u, 
-            string prob_r, 
+            string hum_r,
+            string prob_u,
+            string prob_r,
             string fu_u,
             string fu_r,
-            string adv_u, 
-            string adv_r, 
+            string adv_u,
+            string adv_r,
             string lv_u,
-            string lv_r, 
-            string wk_u, 
-            string wk_r, 
-            string int_u, 
-            string int_r, 
-            string oth_u, 
+            string lv_r,
+            string wk_u,
+            string wk_r,
+            string int_u,
+            string int_r,
+            string oth_u,
             string oth_r)
         {
             cardName = name;
@@ -114,7 +115,7 @@ namespace TarotReadingPlayer.Information
     }
 
     [Serializable]
-    public class TarotInformations
+    public class TarotDatabaseInformations
     {
         public TarotCardInformation[] TarotCard;
     }

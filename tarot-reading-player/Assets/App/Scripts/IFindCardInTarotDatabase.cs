@@ -1,7 +1,7 @@
-﻿using TarotReadingPlayer.Information.Editor;
+﻿using TarotReadingPlayer.Information;
 using UnityEngine;
 
-namespace TarotReadingPlayer.Information
+namespace TarotReadingPlayer.Information.Reader
 {
     public interface IFindCardInTarotDatabase
     {

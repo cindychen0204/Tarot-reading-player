@@ -6,9 +6,8 @@ using UnityEngine;
 
 namespace TarotReadingPlayer.Information.Editor
 {
-    public class TarotCardInformationEditor : EditorWindow
+    public class TarotCardInformationDatabaseEditor : EditorWindow
     {
-
         private enum State
         {
             BLANK,
@@ -22,7 +21,7 @@ namespace TarotReadingPlayer.Information.Editor
         private static string CLOUDSTOREAGEUSE_PATH = @"Assets/Database/Cloud";
         private static string DATABASE_PATH = @"Assets/Database/TarotDB.asset";
 
-        private TarotCardDatabase tarotDatabase;
+        private TarotCardDatabaseObject tarotDatabaseObject;
         private Vector2 scrollPos;
 
         #region タロットカードのプロパティ
@@ -78,14 +77,14 @@ namespace TarotReadingPlayer.Information.Editor
         [MenuItem("Tarot Reading Player/Open TarotCardInfo Editor", false, 1)]
         public static void Initialize()
         {
-            TarotCardInformationEditor window = EditorWindow.GetWindow<TarotCardInformationEditor>();
+            TarotCardInformationDatabaseEditor window = EditorWindow.GetWindow<TarotCardInformationDatabaseEditor>();
             window.minSize = new Vector2(800,600);
             window.Show();
         }
 
         void OnEnable()
         {
-            if (tarotDatabase == null)
+            if (tarotDatabaseObject == null)
             {
                 LoadDatabase();
             }
@@ -102,9 +101,9 @@ namespace TarotReadingPlayer.Information.Editor
 
         void LoadDatabase()
         {
-            tarotDatabase = (TarotCardDatabase) AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabase));
+            tarotDatabaseObject = (TarotCardDatabaseObject) AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabaseObject));
 
-            if (tarotDatabase == null)
+            if (tarotDatabaseObject == null)
             {
                 CreateDatabase();
             }
@@ -118,8 +117,8 @@ namespace TarotReadingPlayer.Information.Editor
                 Directory.CreateDirectory(PROJECT_PATH);
             }
 
-            tarotDatabase = ScriptableObject.CreateInstance<TarotCardDatabase>();
-            AssetDatabase.CreateAsset(tarotDatabase, DATABASE_PATH);
+            tarotDatabaseObject = ScriptableObject.CreateInstance<TarotCardDatabaseObject>();
+            AssetDatabase.CreateAsset(tarotDatabaseObject, DATABASE_PATH);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
@@ -131,11 +130,11 @@ namespace TarotReadingPlayer.Information.Editor
 
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, "box", GUILayout.ExpandWidth(true));
 
-            for (int cnt = 0; cnt < tarotDatabase.count; cnt++)
+            for (int cnt = 0; cnt < tarotDatabaseObject.count; cnt++)
             {
                 EditorGUILayout.BeginHorizontal();
 
-                if (GUILayout.Button(tarotDatabase.TarotCard(cnt).number + " " + tarotDatabase.TarotCard(cnt).cardName, "box", GUILayout.ExpandWidth(true)))
+                if (GUILayout.Button(tarotDatabaseObject.TarotCard(cnt).number + " " + tarotDatabaseObject.TarotCard(cnt).cardName, "box", GUILayout.ExpandWidth(true)))
                 {
                     selectedCard = cnt;
                     state = State.EDIT;
@@ -146,7 +145,7 @@ namespace TarotReadingPlayer.Information.Editor
 
             EditorGUILayout.EndScrollView();
             EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
-            EditorGUILayout.LabelField("カードの数 : " + tarotDatabase.count, GUILayout.Width(100));
+            EditorGUILayout.LabelField("カードの数 : " + tarotDatabaseObject.count, GUILayout.Width(100));
 
             if (GUILayout.Button("新しいカードを登録"))
             {
@@ -155,18 +154,18 @@ namespace TarotReadingPlayer.Information.Editor
 
             if (GUILayout.Button("一括ファイル生成"))
             {
-                for (int cnt = 0; cnt < tarotDatabase.count; cnt++)
+                for (int cnt = 0; cnt < tarotDatabaseObject.count; cnt++)
                 {
-                    var progress = (float) cnt / tarotDatabase.count;
-                    EditorUtility.DisplayProgressBar("ファイル作成中", tarotDatabase.TarotCard(cnt).cardEngName + ".txt",  progress);
+                    var progress = (float) cnt / tarotDatabaseObject.count;
+                    EditorUtility.DisplayProgressBar("ファイル作成中", tarotDatabaseObject.TarotCard(cnt).cardEngName + ".txt",  progress);
 
                     //Cloud use
-                    var cardInfo = tarotDatabase.TarotCard(cnt).cardEngName;
-                    var filename = tarotDatabase.TarotCard(cnt).number + "_" + cardInfo + ".txt";
+                    var cardInfo = tarotDatabaseObject.TarotCard(cnt).cardEngName;
+                    var filename = tarotDatabaseObject.TarotCard(cnt).number + "_" + cardInfo + ".txt";
                     SaveCloudUseFile(cardInfo, filename);
 
-                    var jsonString = CreateTarotInformationJsonString(tarotDatabase.TarotCard(cnt));
-                    filename = tarotDatabase.TarotCard(cnt).number + "_" + tarotDatabase.TarotCard(cnt).cardEngName + ".json";
+                    var jsonString = CreateTarotInformationJsonString(tarotDatabaseObject.TarotCard(cnt));
+                    filename = tarotDatabaseObject.TarotCard(cnt).number + "_" + tarotDatabaseObject.TarotCard(cnt).cardEngName + ".json";
                     SaveFile(jsonString, filename);
                 }
                 EditorUtility.ClearProgressBar();
@@ -212,7 +211,7 @@ namespace TarotReadingPlayer.Information.Editor
 
         void DisplayEditMainArea()
         {
-            var selectCard = tarotDatabase.TarotCard(selectedCard);
+            var selectCard = tarotDatabaseObject.TarotCard(selectedCard);
 
             EditorGUILayout.Space();
             selectCard.cardName = EditorGUILayout.TextField(new GUIContent(cardName),selectCard.cardName);
@@ -257,8 +256,8 @@ namespace TarotReadingPlayer.Information.Editor
 
             if (GUILayout.Button("Jsonファイルを作成して保存", GUILayout.Width(200), GUILayout.Height(100)))
             {
-                tarotDatabase.SortTarotNumber();
-                EditorUtility.SetDirty(tarotDatabase);
+                tarotDatabaseObject.SortTarotNumber();
+                EditorUtility.SetDirty(tarotDatabaseObject);
 
                 //Cloud use
                 var cardInfo = selectCard.cardEngName;
@@ -274,8 +273,8 @@ namespace TarotReadingPlayer.Information.Editor
 
             if (GUILayout.Button("設定のみ", GUILayout.Width(100)))
             {
-                tarotDatabase.SortTarotNumber();
-                EditorUtility.SetDirty(tarotDatabase);
+                tarotDatabaseObject.SortTarotNumber();
+                EditorUtility.SetDirty(tarotDatabaseObject);
                 state = State.BLANK;
             }
 
@@ -285,9 +284,9 @@ namespace TarotReadingPlayer.Information.Editor
             if (GUILayout.Button("このカード削除", GUILayout.Width(100)))
             {
                 Debug.Log("Deleted data from database:"+ selectCard.cardEngName);
-                tarotDatabase.Remove(selectCard);
-                tarotDatabase.SortTarotNumber();
-                EditorUtility.SetDirty(tarotDatabase);
+                tarotDatabaseObject.Remove(selectCard);
+                tarotDatabaseObject.SortTarotNumber();
+                EditorUtility.SetDirty(tarotDatabaseObject);
                 state = State.BLANK;
             }
 
@@ -297,9 +296,9 @@ namespace TarotReadingPlayer.Information.Editor
         {
             var list = new List<TarotCardInformation>();
             list.Add(tarotInfo);
-            TarotInformations TarotInformations = new TarotInformations();
-            TarotInformations.TarotCard = list.ToArray();
-            return JsonUtility.ToJson(TarotInformations, true);
+            TarotDatabaseInformations tarotDatabaseInformations = new TarotDatabaseInformations();
+            tarotDatabaseInformations.TarotCard = list.ToArray();
+            return JsonUtility.ToJson(tarotDatabaseInformations, true);
         }
 
         void SaveFile(string content, string filename)
@@ -408,9 +407,9 @@ namespace TarotReadingPlayer.Information.Editor
                 filename = tarot.number + "_" + tarot.cardEngName + ".json";
                 SaveFile(jsonString, filename);
 
-                tarotDatabase.Add(tarot);
-                tarotDatabase.SortTarotNumber();
-                EditorUtility.SetDirty(tarotDatabase);
+                tarotDatabaseObject.Add(tarot);
+                tarotDatabaseObject.SortTarotNumber();
+                EditorUtility.SetDirty(tarotDatabaseObject);
                 state = State.BLANK;
                 ResetParameters();
             }

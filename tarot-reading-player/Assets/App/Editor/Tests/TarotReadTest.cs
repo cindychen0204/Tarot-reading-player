@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
-using TarotReadingPlayer.Information.Editor;
+using TarotReadingPlayer.Information.Reader;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,36 +17,37 @@ namespace TarotReadingPlayer.Information.Test
         private static string DATABASE_PATH = @"Assets/Database/TarotDB.asset";
 
         private List<string> tarotNameList = new List<string>()
-    {
-        "the_fool",
-        "the_magician",
-        "the_high_priestess",
-        "the_empress",
-        "the_emperor",
-        "the_hierophant",
-        "the_lovers",
-        "the_chariot",
-        "strength",
-        "the_hermit",
-        "wheel_of_fortune",
-        "justice",
-        "the_hanged_man",
-        "death",
-        "temperance",
-        "the_devil",
-        "the_tower",
-        "the_star",
-        "the_moon",
-        "the_sun",
-        "judgement",
-        "the_world"
-    };
+        {
+            "the_fool",
+            "the_magician",
+            "the_high_priestess",
+            "the_empress",
+            "the_emperor",
+            "the_hierophant",
+            "the_lovers",
+            "the_chariot",
+            "strength",
+            "the_hermit",
+            "wheel_of_fortune",
+            "justice",
+            "the_hanged_man",
+            "death",
+            "temperance",
+            "the_devil",
+            "the_tower",
+            "the_star",
+            "the_moon",
+            "the_sun",
+            "judgement",
+            "the_world"
+        };
 
         [Test]
         public void EveryExtractTarot_SameAsDataStoreInDatabase_Upright()
         {
             finder = new TarotCardCreator();
-            TarotDatabaseObject = (TarotCardDatabaseObject)AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabaseObject));
+            TarotDatabaseObject =
+                (TarotCardDatabaseObject) AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabaseObject));
 
             var direction = CardDirection.Upright;
             var position = Vector3.zero;
@@ -76,7 +77,8 @@ namespace TarotReadingPlayer.Information.Test
         public void EveryExtractTarot_SameAsDataStoreInDatabase_Reversed()
         {
             finder = new TarotCardCreator();
-            TarotDatabaseObject = (TarotCardDatabaseObject)AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabaseObject));
+            TarotDatabaseObject =
+                (TarotCardDatabaseObject) AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabaseObject));
 
             var direction = CardDirection.Reversed;
             var position = Vector3.zero;

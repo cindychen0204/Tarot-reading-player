@@ -1,15 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TarotReadingPlayer.Information.Editor;
 using UnityEngine;
 
-
-namespace TarotReadingPlayer.Information.Reader
+namespace TarotReadingPlayer.Information
 {
-}
-
-namespace TarotReadingPlayer.Information.Editor
-{
-    public class TarotCardDatabase : ScriptableObject
+    public class TarotCardDatabaseObject : ScriptableObject
     {
         [SerializeField] public List<TarotCardInformation> database;
 
