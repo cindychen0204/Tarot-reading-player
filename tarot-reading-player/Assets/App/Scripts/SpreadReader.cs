@@ -5,16 +5,37 @@ using UnityEngine.XR.ARFoundation;
 
 namespace TarotReadingPlayer.Information.Reader
 {
+    public enum Spreads
+    {
+        Default,
+        OneOracle,
+        ThreeCards,
+        Alternatively,
+        Hexagram,
+        CelticCross,
+        Horseshoe,
+        Horoscope,
+        HeartSonar,
+        Calendar
+    }
+
     public class SpreadReader : MonoBehaviour
     {
         //後の実装でUIから決めることにする
-        public Spreads CurrentSpreads = Spreads.OneOracle;
+        private Spreads CurrentSpreads = Spreads.Default;
 
-        public ThreeCardsReadingMethods mothod = ThreeCardsReadingMethods.Default;
+        public ThreeCardsReadingMethods method = ThreeCardsReadingMethods.Default;
 
         public Text cardMessage;
 
         public TarotCardDatabase tarotDatabase;
+
+        public TrackedImageInfoManager trackManager;
+
+        public void SetSpread(Spreads spread)
+        {
+            CurrentSpreads = spread;
+        }
 
         public void ReadOneCard(ARTrackedImage card, string direction)
         {
@@ -37,5 +58,6 @@ namespace TarotReadingPlayer.Information.Reader
                 }
             }
         }
+
     }
 }

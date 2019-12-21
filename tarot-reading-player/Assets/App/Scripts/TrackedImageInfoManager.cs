@@ -47,7 +47,18 @@ public class TrackedImageInfoManager : MonoBehaviour
         trackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
     }
 
-    void UpdateInfo(ARTrackedImage trackedImage)
+    //TODO
+    //どういう意味を確認して
+    void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
+    {
+        Debug.Log("eventArgs.added + " + eventArgs.added);
+        foreach (var trackedImage in eventArgs.added)
+        {
+            Debug.Log("trackedImage + " + trackedImage);
+            UpdateInfo(trackedImage);
+        }
+
+        void UpdateInfo(ARTrackedImage trackedImage)
     {
         var cardName = trackedImage.referenceImage.name;
         tarotDictionary.Add(cardName, trackedImage);
@@ -129,11 +140,6 @@ public class TrackedImageInfoManager : MonoBehaviour
         return origin - target;
     }
 
-    void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
-    {
-        foreach (var trackedImage in eventArgs.added)
-        {
-            UpdateInfo(trackedImage);
-        }
+
     }
 }
