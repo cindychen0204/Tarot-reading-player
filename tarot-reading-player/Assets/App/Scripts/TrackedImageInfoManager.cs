@@ -15,26 +15,29 @@ public class TrackedImageInfoManager : MonoBehaviour
     [SerializeField]
     [Tooltip("The camera to set on the world space UI canvas for each instantiated image info.")]
     Camera worldSpaceCamera;
-    /// <summary>
-    /// The prefab has a world space UI canvas,
-    /// which requires a camera to function properly.
-    /// </summary>
+
+    //スマートフォンのカメラ
     public Camera WorldSpaceCamera
     {
         get { return worldSpaceCamera; }
         set { worldSpaceCamera = value; }
     }
 
-    public Text text;
-    ARTrackedImageManager trackedImageManager;
+    [SerializeField]
+    private Text text;
 
-    public SpreadReader SpreadReader;
-    public Dictionary<string, ARTrackedImage> tarotDictionary = new Dictionary<string, ARTrackedImage>();
+    [SerializeField]
+    private ARTrackedImageManager trackedImageManager;
 
+    [SerializeField]
+    private SpreadReader SpreadReader;
+
+    private FindCardInTarotDatabase Finder;
 
     void Awake()
     {
         trackedImageManager = GetComponent<ARTrackedImageManager>();
+        Finder = new TarotCardFinder();
     }
 
     void OnEnable()
@@ -50,17 +53,17 @@ public class TrackedImageInfoManager : MonoBehaviour
     //新しいカードが検出されるときに呼び出される
     void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        //Debug.Log("eventArgs.added + " + eventArgs.added);
+        //ARTrackedImagesChangedEventArgs.added →新しく追加されるカードのリスト
         foreach (var trackedImage in eventArgs.added)
         {
             Debug.Log("new card found : " + trackedImage.referenceImage.name);
             UpdateInfo(trackedImage);
         }
+    }
 
-        void UpdateInfo(ARTrackedImage trackedImage)
+    void UpdateInfo(ARTrackedImage trackedImage)
     {
         var cardName = trackedImage.referenceImage.name;
-        tarotDictionary.Add(cardName, trackedImage);
         var direction = DetectUprightAndReversed(trackedImage);
         if(text != null)
         {
@@ -74,63 +77,35 @@ public class TrackedImageInfoManager : MonoBehaviour
                 direction);
         }
 
-        //Debug.Log("Detected one Card");
-        //ワンオラクル
-        SpreadReader.ReadOneCard(trackedImage, direction);
-        
+        var tarotCard = Finder.FindTarotCardByNameAndDirection(cardName, direction);
+
+        SendCardInformationToSpreadReader(tarotCard);
     }
 
-    int NecessaryCardNumber(Spreads currentSpreads)
+    void SendCardInformationToSpreadReader(Tarot tarot)
     {
-        //TODO
-        int number = 0;
-        switch (currentSpreads)
-        {
-            case Spreads.Default:
-                break;
-            case Spreads.OneOracle:
-                number = 1;
-                break;
-            case Spreads.ThreeCards:
-                break;
-            case Spreads.Alternatively:
-                break;
-            case Spreads.Hexagram:
-                break;
-            case Spreads.CelticCross:
-                break;
-            case Spreads.Horseshoe:
-                break;
-            case Spreads.Horoscope:
-                break;
-            case Spreads.HeartSonar:
-                break;
-            case Spreads.Calendar:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(currentSpreads), currentSpreads, null);
-        }
-
-        return number;
+        SpreadReader.ReadCard(tarot);
     }
 
-    string DetectUprightAndReversed(ARTrackedImage trackedImage)
+
+    CardDirection DetectUprightAndReversed(ARTrackedImage trackedImage)
     {
-        string cardDirection = "";
+        CardDirection cardDirection = CardDirection.Default;
         var rotationY = RelativeRotation(WorldSpaceCamera.transform.rotation.eulerAngles, trackedImage.transform.rotation.eulerAngles).y;
 
         if (Mathf.Abs(rotationY) < 90)
         {
-            cardDirection = "正位";
+            cardDirection = CardDirection.Upright;
         }
         else if (Mathf.Abs(180 - Mathf.Abs(rotationY)) < 90)
         {
-            cardDirection = "逆位";
+            cardDirection = CardDirection.Reversed;
         }
         else
         {
-            cardDirection = "カードを正しい向きに置いてください";
+            cardDirection = CardDirection.Default;
         }
+
         return cardDirection;
     }
 
@@ -139,6 +114,4 @@ public class TrackedImageInfoManager : MonoBehaviour
         return origin - target;
     }
 
-
-    }
 }

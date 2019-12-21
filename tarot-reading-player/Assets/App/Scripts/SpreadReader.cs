@@ -1,4 +1,6 @@
-﻿using TarotReadingPlayer.Information.Editor;
+﻿using System;
+using System.Collections.Generic;
+using TarotReadingPlayer.Information.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
@@ -22,7 +24,9 @@ namespace TarotReadingPlayer.Information.Reader
     public class SpreadReader : MonoBehaviour
     {
         //後の実装でUIから決めることにする
-        private Spreads CurrentSpreads = Spreads.Default;
+        private Spreads currentSpread = Spreads.Default;
+
+        public Spreads CurrentSpread => currentSpread;
 
         public ThreeCardsReadingMethods method = ThreeCardsReadingMethods.Default;
 
@@ -30,34 +34,53 @@ namespace TarotReadingPlayer.Information.Reader
 
         public TarotCardDatabase tarotDatabase;
 
-        public TrackedImageInfoManager trackManager;
+        public List<Tarot> detectCardList = new List<Tarot>();
 
         public void SetSpread(Spreads spread)
         {
-            CurrentSpreads = spread;
+            currentSpread = spread;
         }
 
-        public void ReadOneCard(ARTrackedImage card, string direction)
+        public void ReadCard(Tarot tarotCard)
         {
-            //Debug.Log("Search card..." + card.referenceImage.name);
-            foreach (var tarotCard in tarotDatabase.database)
+            detectCardList.Add(tarotCard);
+
+            switch (currentSpread)
             {
-                if (card.referenceImage.name.Contains(tarotCard.cardEngName))
-                {
-                    var cardName = card.referenceImage.name;
-                    cardMessage.text = string.Format(
-                        "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm\nDirection: {5}\n Keyword: {6}\nAdvice: {7}",
-                        cardName,
-                        card.trackingState,
-                        card.referenceImage.guid,
-                        card.referenceImage.size * 100f,
-                        card.size * 100f,
-                        direction,
-                        tarotCard.keyword,
-                        tarotCard.advice_up);
-                }
+                case Spreads.Default:
+                    break;
+                case Spreads.OneOracle:
+                    if (detectCardList.Count == 1)
+                    {
+                        //TODO
+                    }
+                    break;
+                case Spreads.ThreeCards:
+                    if (detectCardList.Count == 3)
+                    {
+                        ReadThreeCards();
+                    }
+                    break;
+                case Spreads.Alternatively:
+                    break;
+                case Spreads.Hexagram:
+                    break;
+                case Spreads.CelticCross:
+                    break;
+                case Spreads.Horseshoe:
+                    break;
+                case Spreads.Horoscope:
+                    break;
+                case Spreads.HeartSonar:
+                    break;
+                case Spreads.Calendar:
+                    break;
             }
         }
 
+        private void ReadThreeCards()
+        {
+            //TODO
+        }
     }
 }

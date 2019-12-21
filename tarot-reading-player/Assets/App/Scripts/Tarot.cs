@@ -1,9 +1,13 @@
-﻿namespace TarotReadingPlayer.Information
+﻿using System.Numerics;
+
+namespace TarotReadingPlayer.Information
 {
     public class Tarot
     {
-        public string CardName = "";
+        public string Name = "";
+        public string EnglishName = "";
         public CardDirection Direction;
+        public Vector3 Position;
         public int Number;
         public string Keyword;
 
@@ -31,26 +35,48 @@
 
         public Tarot()
         {
-            
+            //Do nothing
         }
 
-        public Tarot(string cardName)
+        public Tarot(string name, string englishName)
         {
-            CardName = cardName;
+            Name = name;
+            EnglishName = englishName;
         }
 
-        public Tarot(string cardName, CardDirection direction, string keyword)
+        public Tarot(string name, string engName, string keyword, CardDirection direction,  Vector3 position)
         {
-            CardName = cardName;
+            Name = name;
+            EnglishName = engName;
             Direction = direction;
+            Position = position;
             Keyword = keyword;
         }
 
-        public Tarot(string cardName, string keyword, CardDirection direction, string currentSituation, string humanFeeling,
+        /// <summary>
+        /// スプレッド認識用
+        /// </summary>
+        /// <param name="name">タロットの名前</param>
+        /// <param name="engName">英語の名前（データベース検索用）</param>
+        /// <param name="keyword">タロットのキーワード</param>
+        /// <param name="direction">タロットの向き（正位と逆位）</param>
+        /// <param name="position">タロットの位置（スプレッド認識用）</param>
+        /// <param name="currentSituation">現在の状況</param>
+        /// <param name="humanFeeling">人の気もち</param>
+        /// <param name="problemCause">問題の原因</param>
+        /// <param name="future">未来の行末</param>
+        /// <param name="advice">アドバイス</param>
+        /// <param name="love">恋愛</param>
+        /// <param name="work">仕事</param>
+        /// <param name="interpersonal">対人関係</param>
+        /// <param name="other">その他</param>
+        public Tarot(string name, string engName,  string keyword, CardDirection direction, Vector3 position, string currentSituation, string humanFeeling,
             string problemCause, string future, string advice, string love, string work, string interpersonal, string other)
         {
-            CardName = cardName;
+            Name = name;
+            EnglishName = engName;
             Direction = direction;
+            Position = position;
             Keyword = keyword;
 
             switch (direction)
@@ -83,6 +109,7 @@
         }
 
         public Tarot(string name,
+            string engName,
             int nbr,
             string ky,
             string currentU,
@@ -104,7 +131,8 @@
             string oth_u,
             string oth_r)
         {
-            CardName = name;
+            Name = name;
+            EnglishName = engName;
             Number = nbr;
             Keyword = ky;
             CurrentSituationSituation_Up = currentU;

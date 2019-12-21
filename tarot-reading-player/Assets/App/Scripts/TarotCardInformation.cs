@@ -1,61 +1,7 @@
 ﻿using System;
-using TarotReadingPlayer.Information.Editor;
 
 namespace TarotReadingPlayer.Information
 {
-    public interface FindCardInTarotDatabase
-    {
-        Tarot FindCardAllInformation(string cardName);
-
-        Tarot FindTarotCardByNameAndDirection(string cardName, CardDirection direction);
-    }
-
-    public class TarotCardFinder : FindCardInTarotDatabase
-    {
-        public TarotCardDatabase tarotDatabase;
-
-        public Tarot FindCardAllInformation(string cardName)
-        {
-            var dummyTarot = new Tarot();
-            foreach (var card in tarotDatabase.database)
-            {
-                if (TryGetCardInformationInCardDataBase(cardName))
-                {
-                    //TODO
-                    //dummyTarot = new Tarot(card.cardName, card.number, card.keyword, card.);
-
-                }
-            }
-            return dummyTarot;
-        }
-
-        public Tarot FindTarotCardByNameAndDirection(string cardName, CardDirection direction)
-        {
-            var dummyTarot = new Tarot();
-            foreach (var card in tarotDatabase.database)
-            {
-                if (TryGetCardInformationInCardDataBase(cardName))
-                {
-                    //TODO
-                    //dummyTarot = new Tarot(card.cardName, card.number, card.keyword, car);
-                }
-            }
-            return dummyTarot;
-        }
-
-        private bool TryGetCardInformationInCardDataBase(string cardName)
-        {
-            foreach (var card in tarotDatabase.database)
-            {
-                if (cardName.Contains(card.cardEngName))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
     //Output
     public enum AppliedCase
     {
@@ -66,13 +12,6 @@ namespace TarotReadingPlayer.Information
         Others
     }
 
-    //Input
-    public enum CardDirection
-    {
-        Default,
-        Upright,
-        Reversed
-    }
 
     public enum CardReading
     {
