@@ -35,6 +35,11 @@ namespace TarotReadingPlayer.Information.Reader
 
         private List<TarotCard> detectCardList = new List<TarotCard>();
 
+        void Start()
+        {
+            cardMessage.text = "Please Select Button";
+        }
+
         public void SetSpread(Spreads spread)
         {
             currentSpread = spread;
@@ -52,10 +57,6 @@ namespace TarotReadingPlayer.Information.Reader
             detectCardList.Clear();
         }
 
-        void Start()
-        {
-            cardMessage.text = "Please Select Button";
-        }
 
         /// <summary>
         /// カード情報を受け取り、設定されたスプレッドに対応させる

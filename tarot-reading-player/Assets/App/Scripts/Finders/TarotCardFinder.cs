@@ -1,6 +1,5 @@
 ﻿using System;
 using TarotReadingPlayer.Information.Editor;
-using UnityEditor;
 using UnityEngine;
 
 namespace TarotReadingPlayer.Information.Reader
@@ -9,7 +8,10 @@ namespace TarotReadingPlayer.Information.Reader
     {
         public TarotCardDatabaseObject TarotDatabaseObject;
 
-        private static string DATABASE_PATH = @"Assets/Database/TarotDB.asset";
+        public void ObtainDatabase()
+        {
+            TarotDatabaseObject = GameObject.Find("AR Session Origin").GetComponent<TarotSpreadReader>().TarotDatabaseObject;
+        }
 
         public TarotCard FindCardAllInformation(string cardName)
         {

@@ -38,10 +38,11 @@ namespace TarotReadingPlayer.Information.Reader
 
         private IFindCardInformation finder;
 
-        void Awake()
+        void Start()
         {
             trackingManager = GetComponent<ARTrackedImageManager>();
             finder = new TarotCardFinder();
+            finder.ObtainDatabase();
         }
 
         void OnEnable()
