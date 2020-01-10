@@ -27,10 +27,12 @@ namespace TarotReadingPlayer.Information
             database.Remove(tarot);
         }
 
-        public int count
+        public void Clear()
         {
-            get { return database.Count; }
+            database.Clear();
         }
+
+        public int Count => database.Count;
 
         public TarotCardInformation TarotCard(int index)
         {

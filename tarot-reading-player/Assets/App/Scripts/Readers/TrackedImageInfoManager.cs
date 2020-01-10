@@ -27,22 +27,22 @@ namespace TarotReadingPlayer.Information.Reader
         //スマートフォンのカメラ
         public Camera WorldSpaceCamera
         {
-            get { return worldSpaceCamera; }
-            set { worldSpaceCamera = value; }
+            get => worldSpaceCamera;
+            set => worldSpaceCamera = value;
         }
 
         [SerializeField] private Text text;
 
         [SerializeField] private ARTrackedImageManager trackedImageManager;
 
-        [SerializeField] private SpreadReader SpreadReader;
+        [SerializeField] private TarotSpreadReader _tarotSpreadReader;
 
-        private IFindCardInTarotDatabase Finder;
+        private IFindCardInformation Finder;
 
         void Awake()
         {
             trackedImageManager = GetComponent<ARTrackedImageManager>();
-            Finder = new TarotCardCreator();
+            Finder = new TarotCardFinder();
         }
 
         void OnEnable()
@@ -95,10 +95,10 @@ namespace TarotReadingPlayer.Information.Reader
         /// <summary>
         /// Readerに情報を送り、スプレッドの判断をさせる
         /// </summary>
-        /// <param name="tarot">Finderで取得したタロット情報</param>
-        void SendCardInformationToSpreadReader(Tarot tarot)
+        /// <param name="tarotCard">Finderで取得したタロット情報</param>
+        void SendCardInformationToSpreadReader(TarotCard tarotCard)
         {
-            SpreadReader.ReadCard(tarot);
+            _tarotSpreadReader.ReadCard(tarotCard);
         }
 
         /// <summary>

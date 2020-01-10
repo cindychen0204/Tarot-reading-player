@@ -8,9 +8,7 @@ namespace TarotReadingPlayer.Information.Test
 {
     public class TarotReadTest
     {
-        private TarotCardCreator creator;
-
-        private IFindCardInTarotDatabase finder;
+        private IFindCardInformation Ifinder;
 
         public TarotCardDatabaseObject TarotDatabaseObject;
 
@@ -45,7 +43,7 @@ namespace TarotReadingPlayer.Information.Test
         [Test]
         public void EveryExtractTarot_SameAsDataStoreInDatabase_Upright()
         {
-            finder = new TarotCardCreator();
+            Ifinder = new TarotCardFinder();
             TarotDatabaseObject =
                 (TarotCardDatabaseObject) AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabaseObject));
 
@@ -54,7 +52,7 @@ namespace TarotReadingPlayer.Information.Test
 
             for (int cardIndex = 0; cardIndex < tarotNameList.Count; cardIndex++)
             {
-                var dummyTarot = finder.FindTarotCardByNameAndDirection(tarotNameList[cardIndex], direction, position);
+                var dummyTarot = Ifinder.FindTarotCardByNameAndDirection(tarotNameList[cardIndex], direction, position);
                 var expectTarot = TarotDatabaseObject.TarotCard(index: cardIndex);
 
                 Assert.AreEqual(expectTarot.cardName, dummyTarot.Name);
@@ -76,7 +74,7 @@ namespace TarotReadingPlayer.Information.Test
         [Test]
         public void EveryExtractTarot_SameAsDataStoreInDatabase_Reversed()
         {
-            finder = new TarotCardCreator();
+            Ifinder = new TarotCardFinder();
             TarotDatabaseObject =
                 (TarotCardDatabaseObject) AssetDatabase.LoadAssetAtPath(DATABASE_PATH, typeof(TarotCardDatabaseObject));
 
@@ -85,7 +83,7 @@ namespace TarotReadingPlayer.Information.Test
 
             for (int cardIndex = 0; cardIndex < tarotNameList.Count; cardIndex++)
             {
-                var dummyTarot = finder.FindTarotCardByNameAndDirection(tarotNameList[cardIndex], direction, position);
+                var dummyTarot = Ifinder.FindTarotCardByNameAndDirection(tarotNameList[cardIndex], direction, position);
                 var expectTarot = TarotDatabaseObject.TarotCard(index: cardIndex);
 
                 Assert.AreEqual(expectTarot.cardName, dummyTarot.Name);

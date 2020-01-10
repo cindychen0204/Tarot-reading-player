@@ -19,7 +19,7 @@ namespace TarotReadingPlayer.Information.Reader
         Calendar
     }
 
-    public class SpreadReader : MonoBehaviour
+    public class TarotSpreadReader : MonoBehaviour
     {
         //後の実装でUIから決めることにする
         private Spreads currentSpread = Spreads.Default;
@@ -32,7 +32,7 @@ namespace TarotReadingPlayer.Information.Reader
 
         public TarotCardDatabaseObject TarotDatabaseObject;
 
-        public List<Tarot> detectCardList = new List<Tarot>();
+        public List<TarotCard> detectCardList = new List<TarotCard>();
 
         public void SetSpread(Spreads spread)
         {
@@ -42,10 +42,10 @@ namespace TarotReadingPlayer.Information.Reader
         /// <summary>
         /// カード情報を受け取り、設定されたスプレッドに対応させる
         /// </summary>
-        /// <param name="tarotCard"></param>
-        public void ReadCard(Tarot tarotCard)
+        /// <param name="tarotCardCard"></param>
+        public void ReadCard(TarotCard tarotCardCard)
         {
-            detectCardList.Add(tarotCard);
+            detectCardList.Add(tarotCardCard);
 
             switch (currentSpread)
             {
