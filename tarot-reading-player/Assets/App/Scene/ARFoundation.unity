@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 1600087172}
   - component: {fileID: 1600087173}
   - component: {fileID: 1600087174}
+  - component: {fileID: 1600087175}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -630,7 +631,7 @@ MonoBehaviour:
   worldSpaceCamera: {fileID: 753283701}
   text: {fileID: 0}
   trackedImageManager: {fileID: 1600087172}
-  SpreadReader: {fileID: 1600087174}
+  _tarotSpreadReader: {fileID: 1600087174}
 --- !u!114 &1600087174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,9 +644,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb809ce3ecce67489a3ef665936aff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  method: 0
+  method: 1
   cardMessage: {fileID: 1338543044}
-  tarotDatabase: {fileID: 11400000, guid: ac6ded5fcfd07aa49831610578f3e04b, type: 2}
+  TarotDatabaseObject: {fileID: 11400000, guid: ac6ded5fcfd07aa49831610578f3e04b,
+    type: 2}
+--- !u!114 &1600087175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600087169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0e588711f2f5b48a76de6c4d113417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reader: {fileID: 1600087174}
 --- !u!1 &1962046672
 GameObject:
   m_ObjectHideFlags: 0

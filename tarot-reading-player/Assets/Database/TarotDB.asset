@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7921814a0b9e1334eaef88b221acec53, type: 3}
   m_Name: TarotDB
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp:TarotReadingPlayer.Information:TarotCardDatabaseObject
   database:
   - cardName: "\u611A\u8005"
     cardEngName: the_fool
