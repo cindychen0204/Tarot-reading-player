@@ -5,21 +5,24 @@ namespace TarotReadingPlayer.Information.Reader
     public class TarotReadingController : MonoBehaviour
     {
         public TarotSpreadReader reader;
-
-        void OnGUI()
+        
+        public void OnSelectedOneCardReading()
         {
-            if (GUI.Button(new Rect(10, 10, 150, 50), "Read One Card"))
-            {
-                reader.SetSpread(Spreads.OneOracle);
-            }
-            if (GUI.Button(new Rect(160, 10, 150, 50), "Read Three Cards"))
-            {
-                reader.SetSpread(Spreads.ThreeCards);
-            }
-            if (GUI.Button(new Rect(10, 70, 300, 50), "Read Spread one more time"))
-            {
-                reader.RemoveAllCards();
-            }
+            reader.SetSpread(Spreads.OneOracle);
+            reader.cardMessage.text = "Finding One Card...";
+        }
+
+        public void OnSelectedThreeCardsReading()
+        {
+            reader.SetSpread(Spreads.ThreeCards);
+            reader.cardMessage.text = "Finding Three Cards...";
+        }
+
+        public void OnSelectedOneMoreTimeReading()
+        {
+            reader.RemoveAllCards();
+            reader.SetSpread(Spreads.Default);
+            reader.cardMessage.text = "Please Select Button";
         }
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine.XR.ARFoundation;
 
 namespace TarotReadingPlayer.Information.Reader
 {
-    //Input
     public enum CardDirection
     {
         Default,
@@ -18,7 +17,7 @@ namespace TarotReadingPlayer.Information.Reader
     /// detected image.
     /// </summary>>
     [RequireComponent(typeof(ARTrackedImageManager))]
-    public class TrackedImageInfoManager : MonoBehaviour
+    public class ImageTrackingManager : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("The camera to set on the world space UI canvas for each instantiated image information.")]
@@ -98,7 +97,7 @@ namespace TarotReadingPlayer.Information.Reader
         /// <returns></returns>
         CardDirection DetectUprightAndReversed(ARTrackedImage trackedImage)
         {
-            CardDirection cardDirection = CardDirection.Default;
+            var cardDirection = CardDirection.Default;
             var rotationY = RelativeRotation(ARCamera.transform.rotation.eulerAngles,
                 trackedImage.transform.rotation.eulerAngles).y;
 

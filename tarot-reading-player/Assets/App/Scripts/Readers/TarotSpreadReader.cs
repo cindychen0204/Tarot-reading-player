@@ -42,7 +42,9 @@ namespace TarotReadingPlayer.Information.Reader
 
         public void AddDetectCard(TarotCard tarotCard)
         {
+            cardMessage.text = "Detected card.";
             detectCardList.Add(tarotCard);
+            ReadCard();
         }
 
         public void RemoveAllCards()
@@ -50,11 +52,16 @@ namespace TarotReadingPlayer.Information.Reader
             detectCardList.Clear();
         }
 
+        void Start()
+        {
+            cardMessage.text = "Please Select Button";
+        }
+
         /// <summary>
         /// カード情報を受け取り、設定されたスプレッドに対応させる
         /// </summary>
         /// <param name="tarotCard"></param>
-        public void ReadCard(TarotCard tarotCard)
+        public void ReadCard()
         {
             switch (currentSpread)
             {
