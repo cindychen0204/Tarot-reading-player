@@ -22,52 +22,51 @@ namespace TarotReadingPlayer.Information.Reader
     {
         [SerializeField]
         [Tooltip("The camera to set on the world space UI canvas for each instantiated image information.")]
-        private Camera worldSpaceCamera;
+        private Camera aRCamera;
 
         //スマートフォンのカメラ
-        public Camera WorldSpaceCamera
+        public Camera ARCamera
         {
-            get => worldSpaceCamera;
-            set => worldSpaceCamera = value;
+            get => aRCamera;
+            set => aRCamera = value;
         }
 
         [SerializeField] private Text text;
 
-        [SerializeField] private ARTrackedImageManager trackedImageManager;
+        [SerializeField] private ARTrackedImageManager trackingManager;
 
-        [SerializeField] private TarotSpreadReader _tarotSpreadReader;
+        [SerializeField] private TarotSpreadReader reader;
 
-        private IFindCardInformation Finder;
+        private IFindCardInformation finder;
 
         void Awake()
         {
-            trackedImageManager = GetComponent<ARTrackedImageManager>();
-            Finder = new TarotCardFinder();
+            trackingManager = GetComponent<ARTrackedImageManager>();
+            finder = new TarotCardFinder();
         }
 
         void OnEnable()
         {
-            trackedImageManager.trackedImagesChanged += OnNewTrackedImagesAdded;
+            trackingManager.trackedImagesChanged += OnNewTrackingResultAdded;
         }
 
         void OnDisable()
         {
-            trackedImageManager.trackedImagesChanged -= OnNewTrackedImagesAdded;
+            trackingManager.trackedImagesChanged -= OnNewTrackingResultAdded;
         }
 
         //新しいカードが検出されるときに呼び出される
-        void OnNewTrackedImagesAdded(ARTrackedImagesChangedEventArgs eventArgs)
+        void OnNewTrackingResultAdded(ARTrackedImagesChangedEventArgs eventArgs)
         {
             //ARTrackedImagesChangedEventArgs.added →新しく追加されるカードのリスト
             foreach (var trackedImage in eventArgs.added)
             {
                 var cardName = trackedImage.referenceImage.name;
                 var direction = DetectUprightAndReversed(trackedImage);
-                ShowText(trackedImage, cardName, direction);
-                //TODO : スプレッドによりFinderを呼び出す方法も異なるはず
+                //ShowText(trackedImage, cardName, direction);
                 var tarotCard =
-                    Finder.FindTarotCardByNameAndDirection(cardName, direction, trackedImage.transform.position);
-                SendCardInformationToSpreadReader(tarotCard);
+                    finder.FindTarotCardByNameAndDirection(cardName, direction, trackedImage.transform.position);
+                reader.AddDetectCard(tarotCard);
             }
         }
 
@@ -93,15 +92,6 @@ namespace TarotReadingPlayer.Information.Reader
         }
 
         /// <summary>
-        /// Readerに情報を送り、スプレッドの判断をさせる
-        /// </summary>
-        /// <param name="tarotCard">Finderで取得したタロット情報</param>
-        void SendCardInformationToSpreadReader(TarotCard tarotCard)
-        {
-            _tarotSpreadReader.ReadCard(tarotCard);
-        }
-
-        /// <summary>
         /// カードの向きを取得
         /// </summary>
         /// <param name="trackedImage"></param>
@@ -109,7 +99,7 @@ namespace TarotReadingPlayer.Information.Reader
         CardDirection DetectUprightAndReversed(ARTrackedImage trackedImage)
         {
             CardDirection cardDirection = CardDirection.Default;
-            var rotationY = RelativeRotation(WorldSpaceCamera.transform.rotation.eulerAngles,
+            var rotationY = RelativeRotation(ARCamera.transform.rotation.eulerAngles,
                 trackedImage.transform.rotation.eulerAngles).y;
 
             if (Mathf.Abs(rotationY) < 90)
