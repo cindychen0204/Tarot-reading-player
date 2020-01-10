@@ -22,31 +22,40 @@ namespace TarotReadingPlayer.Information.Reader
     public class TarotSpreadReader : MonoBehaviour
     {
         //後の実装でUIから決めることにする
+        [SerializeField]
         private Spreads currentSpread = Spreads.Default;
 
         public Spreads CurrentSpread => currentSpread;
 
-        public ThreeCardsReadingMethods method = ThreeCardsReadingMethods.Default;
+        public ThreeCardsReadingMethods method = ThreeCardsReadingMethods.Past_Now_NearFuture;
 
         public Text cardMessage;
 
         public TarotCardDatabaseObject TarotDatabaseObject;
 
-        public List<TarotCard> detectCardList = new List<TarotCard>();
+        private List<TarotCard> detectCardList = new List<TarotCard>();
 
         public void SetSpread(Spreads spread)
         {
             currentSpread = spread;
         }
 
+        public void AddDetectCard(TarotCard tarotCard)
+        {
+            detectCardList.Add(tarotCard);
+        }
+
+        public void RemoveAllCards()
+        {
+            detectCardList.Clear();
+        }
+
         /// <summary>
         /// カード情報を受け取り、設定されたスプレッドに対応させる
         /// </summary>
-        /// <param name="tarotCardCard"></param>
-        public void ReadCard(TarotCard tarotCardCard)
+        /// <param name="tarotCard"></param>
+        public void ReadCard(TarotCard tarotCard)
         {
-            detectCardList.Add(tarotCardCard);
-
             switch (currentSpread)
             {
                 case Spreads.Default:
@@ -54,16 +63,14 @@ namespace TarotReadingPlayer.Information.Reader
                 case Spreads.OneOracle:
                     if (detectCardList.Count == 1)
                     {
-                        //TODO
+                        ReadOneCard();
                     }
-
                     break;
                 case Spreads.ThreeCards:
                     if (detectCardList.Count == 3)
                     {
                         ReadThreeCards();
                     }
-
                     break;
                 case Spreads.Alternatively:
                     break;
@@ -88,6 +95,34 @@ namespace TarotReadingPlayer.Information.Reader
         private void ReadThreeCards()
         {
             //TODO
+        }
+
+        private void ReadOneCard()
+        {
+            var work = "";
+            var love = "";
+            var advice = "";
+            var card = detectCardList[0];
+            if (card.Direction == CardDirection.Upright)
+            {
+                work = card.Work_Up;
+                love = card.Love_Up;
+                advice = card.Advice_Up;
+            }
+            else if (card.Direction == CardDirection.Reversed)
+            {
+                work = card.Work_Re;
+                love = card.Love_Re;
+                advice = card.Advice_Re;
+            }
+
+            var msg = string.Format("{0}\nのカードです。向きは{1}\nです。 仕事運は：{2} \n恋愛運は： {3} \n アドバイス：{4}",
+                card.Name,
+                card.Direction,
+                work,
+                love,
+                advice);
+            cardMessage.text = msg;
         }
     }
 }
