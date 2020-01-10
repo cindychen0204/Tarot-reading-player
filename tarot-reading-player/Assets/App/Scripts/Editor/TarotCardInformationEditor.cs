@@ -298,6 +298,11 @@ namespace TarotReadingPlayer.Information.Editor
             EditorGUILayout.Space();
             EditorGUILayout.Space();
 
+            if (GUILayout.Button("戻る", GUILayout.Width(100), GUILayout.Height(100)))
+            {
+                dataState = State.BLANK;
+            }
+
             if (GUILayout.Button("このカード削除", GUILayout.Width(100)))
             {
                 Debug.Log("Deleted data from database:"+ selectCard.cardEngName);
