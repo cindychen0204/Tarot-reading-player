@@ -45,3 +45,193 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: 2_the_high_priestess
     m_Texture: {fileID: 2800000, guid: 27c18c1505405be4a8cec6aac6bd3e3b, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4814209894436876702
+      m_GuidHigh: 16809879205794806971
+    m_SerializedTextureGuid:
+      m_GuidLow: 10791864337890709700
+      m_GuidHigh: 14374103835938348089
+    m_Size: {x: 0.05214815, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 3_the_empress
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5736824773643793275
+      m_GuidHigh: 4369028415316088192
+    m_SerializedTextureGuid:
+      m_GuidLow: 1613569676392209366
+      m_GuidHigh: 7766776373877193803
+    m_Size: {x: 0.05214815, y: 0.08644251}
+    m_SpecifySize: 1
+    m_Name: 4_the_emperor
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5470523912928472270
+      m_GuidHigh: 17491217862614484150
+    m_SerializedTextureGuid:
+      m_GuidLow: 4050128888118676749
+      m_GuidHigh: 7800893387228436985
+    m_Size: {x: 0.05214815, y: 0.08584514}
+    m_SpecifySize: 1
+    m_Name: 5_the_hierophant
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5238130859247740090
+      m_GuidHigh: 3427272050094431371
+    m_SerializedTextureGuid:
+      m_GuidLow: 13489637910458590131
+      m_GuidHigh: 7821325166559863897
+    m_Size: {x: 0.05214815, y: 0.08741353}
+    m_SpecifySize: 1
+    m_Name: 6_the_lovers
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5452193610315042962
+      m_GuidHigh: 8927891926069293461
+    m_SerializedTextureGuid:
+      m_GuidLow: 2469219220772546350
+      m_GuidHigh: 12020643530242016235
+    m_Size: {x: 0.05214815, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 7_the_chariot
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5033078114275090572
+      m_GuidHigh: 6453691081184591754
+    m_SerializedTextureGuid:
+      m_GuidLow: 6207165215376082302
+      m_GuidHigh: 14690695193903300376
+    m_Size: {x: 0.05214815, y: 0.08656376}
+    m_SpecifySize: 1
+    m_Name: 8_strength
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5232572445776473258
+      m_GuidHigh: 16529181292482939790
+    m_SerializedTextureGuid:
+      m_GuidLow: 11138716483230760559
+      m_GuidHigh: 14883555441936314442
+    m_Size: {x: 0.05214815, y: 0.087626286}
+    m_SpecifySize: 1
+    m_Name: 9_the_hermit
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5698778955050399089
+      m_GuidHigh: 8727130965782921918
+    m_SerializedTextureGuid:
+      m_GuidLow: 1500108890146582584
+      m_GuidHigh: 7677111903935761881
+    m_Size: {x: 0.05214815, y: 0.08796495}
+    m_SpecifySize: 1
+    m_Name: 10_wheel_of_fortune
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4791407134616027365
+      m_GuidHigh: 17049140057242153606
+    m_SerializedTextureGuid:
+      m_GuidLow: 16736593472492955932
+      m_GuidHigh: 5442615346191813769
+    m_Size: {x: 0.05214815, y: 0.08833342}
+    m_SpecifySize: 1
+    m_Name: 11_justice
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4875540385205748292
+      m_GuidHigh: 18175704453554450586
+    m_SerializedTextureGuid:
+      m_GuidLow: 7594215182096398087
+      m_GuidHigh: 11425840961907509611
+    m_Size: {x: 0.05214815, y: 0.08709503}
+    m_SpecifySize: 1
+    m_Name: 12_the_hanged_man
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5582526198306502134
+      m_GuidHigh: 3092421016463739273
+    m_SerializedTextureGuid:
+      m_GuidLow: 3712240395792881946
+      m_GuidHigh: 573498371533520475
+    m_Size: {x: 0.05214815, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 13_death
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5546324311584508311
+      m_GuidHigh: 13724554313187368334
+    m_SerializedTextureGuid:
+      m_GuidLow: 16898651126768479392
+      m_GuidHigh: 12334043202138945161
+    m_Size: {x: 0.05214815, y: 0.08751343}
+    m_SpecifySize: 1
+    m_Name: 14_temperance
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4761950947758942087
+      m_GuidHigh: 13508924001537731721
+    m_SerializedTextureGuid:
+      m_GuidLow: 1239691446408261547
+      m_GuidHigh: 15348751730598347033
+    m_Size: {x: 0.05214815, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 15_the_devil
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5529183174223940655
+      m_GuidHigh: 15392115484815768704
+    m_SerializedTextureGuid:
+      m_GuidLow: 803011877365258519
+      m_GuidHigh: 13782246152031508952
+    m_Size: {x: 0.05214815, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 16_the_tower
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5147916021667547270
+      m_GuidHigh: 13724232133208057273
+    m_SerializedTextureGuid:
+      m_GuidLow: 2924077520514668739
+      m_GuidHigh: 3838854270700128411
+    m_Size: {x: 0.05214815, y: 0.08868616}
+    m_SpecifySize: 1
+    m_Name: 17_the_star
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5509660713491575385
+      m_GuidHigh: 4253746384667824002
+    m_SerializedTextureGuid:
+      m_GuidLow: 9166014191872300635
+      m_GuidHigh: 10810730213466833513
+    m_Size: {x: 0.05214815, y: 0.086646155}
+    m_SpecifySize: 1
+    m_Name: 18_the_moon
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4990201488426043307
+      m_GuidHigh: 1858015355276166030
+    m_SerializedTextureGuid:
+      m_GuidLow: 13566143229398841768
+      m_GuidHigh: 13357487742104618425
+    m_Size: {x: 0.05214815, y: 0.08703945}
+    m_SpecifySize: 1
+    m_Name: 19_the_sun
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5572792659951955497
+      m_GuidHigh: 11099149679094890894
+    m_SerializedTextureGuid:
+      m_GuidLow: 3604285338622400994
+      m_GuidHigh: 12795136848119723784
+    m_Size: {x: 0.05214815, y: 0.088}
+    m_SpecifySize: 1
+    m_Name: 20_judgement
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4788431685168748830
+      m_GuidHigh: 10661407610541942699
+    m_SerializedTextureGuid:
+      m_GuidLow: 15696372117058601963
+      m_GuidHigh: 2682685983768343257
+    m_Size: {x: 0.05214815, y: 0.08659101}
+    m_SpecifySize: 1
+    m_Name: 21_the_world
+    m_Texture: {fileID: 0}
