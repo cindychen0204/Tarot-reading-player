@@ -47,7 +47,7 @@ namespace TarotReadingPlayer.Information.Reader
 
         public void AddDetectCard(TarotCard tarotCard)
         {
-            cardMessage.text = "Detected card.";
+            if (detectCardList.Contains(tarotCard)) return;
             detectCardList.Add(tarotCard);
             ReadCard();
         }
@@ -110,23 +110,26 @@ namespace TarotReadingPlayer.Information.Reader
             var work = "";
             var love = "";
             var advice = "";
+            var direction = "";
             var card = detectCardList[0];
             if (card.Direction == CardDirection.Upright)
             {
+                direction = "正位";
                 work = card.Work_Up;
                 love = card.Love_Up;
                 advice = card.Advice_Up;
             }
             else if (card.Direction == CardDirection.Reversed)
             {
+                direction = "逆位";
                 work = card.Work_Re;
                 love = card.Love_Re;
                 advice = card.Advice_Re;
             }
 
-            var msg = string.Format("{0}\nのカードです。向きは{1}\nです。 仕事運は：{2} \n恋愛運は： {3} \n アドバイス：{4}",
+            var msg = string.Format("{0}のカードの{1}です。\n 仕事運は：{2}\n恋愛運は： {3} \n アドバイス：{4}",
                 card.Name,
-                card.Direction,
+                direction,
                 work,
                 love,
                 advice);

@@ -58,12 +58,11 @@ namespace TarotReadingPlayer.Information.Reader
         //新しいカードが検出されるときに呼び出される
         void OnNewTrackingResultAdded(ARTrackedImagesChangedEventArgs eventArgs)
         {
-            //ARTrackedImagesChangedEventArgs.added →新しく追加されるカードのリスト
-            foreach (var trackedImage in eventArgs.added)
+            //ARTrackedImagesChangedEventArgs.updated →更新される画像リスト
+            foreach (var trackedImage in eventArgs.updated)
             {
                 var cardName = trackedImage.referenceImage.name;
-                var direction = DetectUprightAndReversed(trackedImage);
-                //ShowText(trackedImage, cardName, direction);
+                var direction = DetectCardDirection(trackedImage);
                 var tarotCard =
                     finder.FindTarotCardByNameAndDirection(cardName, direction, trackedImage.transform.position);
                 reader.AddDetectCard(tarotCard);
@@ -96,7 +95,7 @@ namespace TarotReadingPlayer.Information.Reader
         /// </summary>
         /// <param name="trackedImage"></param>
         /// <returns></returns>
-        CardDirection DetectUprightAndReversed(ARTrackedImage trackedImage)
+        CardDirection DetectCardDirection(ARTrackedImage trackedImage)
         {
             var cardDirection = CardDirection.Default;
             var rotationY = RelativeRotation(ARCamera.transform.rotation.eulerAngles,
