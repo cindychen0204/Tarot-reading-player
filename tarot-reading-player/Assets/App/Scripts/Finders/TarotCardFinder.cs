@@ -15,6 +15,7 @@ namespace TarotReadingPlayer.Information.Reader
 
         public TarotCard FindCardAllInformation(string cardName)
         {
+            if (TarotDatabaseObject == null) ObtainDatabase();
             try
             {
                 var dummyTarot = new TarotCard();
@@ -41,6 +42,7 @@ namespace TarotReadingPlayer.Information.Reader
 
         public TarotCard FindTarotCardByNameAndDirection(string cardName, CardDirection direction, Vector3 position)
         {
+            if (TarotDatabaseObject == null) ObtainDatabase();
             try
             {
                 var dummyTarot = new TarotCard();

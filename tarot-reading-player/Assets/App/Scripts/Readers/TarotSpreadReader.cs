@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TarotReadingPlayer.Information.Displayer;
 
 namespace TarotReadingPlayer.Information.Reader
@@ -38,7 +37,7 @@ namespace TarotReadingPlayer.Information.Reader
     {
         //後の実装でUIから決めることにする
         [SerializeField]
-        private TarotSpreads currentTarotSpread = TarotSpreads.Default;
+        private TarotSpreads currentTarotSpread = TarotSpreads.OneOracle;
 
         public TarotSpreads CurrentTarotSpread => currentTarotSpread;
 
@@ -49,11 +48,15 @@ namespace TarotReadingPlayer.Information.Reader
 
         [SerializeField] private TarotReadingDisplayer displayer;
 
-        public TarotCardDatabaseObject TarotDatabaseObject { get; }
+        public TarotCardDatabaseObject TarotDatabaseObject;
 
         private readonly List<TarotCard> detectCardList = new List<TarotCard>();
 
         private readonly List<string> cardNameList = new List<string>();
+
+        public int ReadingCardNumber = 0;
+
+        public int NecessaryCardNumber = 0;
 
         void Start()
         {
@@ -71,14 +74,15 @@ namespace TarotReadingPlayer.Information.Reader
         public void AddDetectCard(TarotCard tarotCard)
         {
             if (cardNameList.Contains(tarotCard.Name)) return;
-            Debug.Log("Detected Card number" + detectCardList.Count);
             cardNameList.Add(tarotCard.Name);
             detectCardList.Add(tarotCard);
             ReadCardWithSettingsSpreads();
+            ReadingCardNumber += 1;
         }
 
         public void DeleteAllRecords()
         {
+            ReadingCardNumber = 0;
             cardNameList.Clear();
             detectCardList.Clear();
         }
@@ -94,13 +98,15 @@ namespace TarotReadingPlayer.Information.Reader
                 case TarotSpreads.Default:
                     break;
                 case TarotSpreads.OneOracle:
-                    if (detectCardList.Count == 1)
+                    NecessaryCardNumber = 1;
+                    if (detectCardList.Count == NecessaryCardNumber)
                     {
                         ReadOneCard();
                     }
                     break;
                 case TarotSpreads.ThreeCards:
-                    if (detectCardList.Count == 3)
+                    NecessaryCardNumber = 3;
+                    if (detectCardList.Count == NecessaryCardNumber)
                     {
                         ReadThreeCards();
                     }
@@ -190,7 +196,7 @@ namespace TarotReadingPlayer.Information.Reader
             var advice = Advice_ConvertToString(card);
             var direction = Direction_ConvertToString(card);
 
-            var msg = string.Format("{0}のカードの{1}です。\n 仕事運は：{2}\n恋愛運は： {3} \n アドバイス：{4}",
+            var msg = string.Format("{0}のカードの{1}です。\n 仕事運は：{2}\n 恋愛運は： {3} \n アドバイス：{4}",
                 card.Name,
                 direction,
                 work,
@@ -222,9 +228,9 @@ namespace TarotReadingPlayer.Information.Reader
             var futureDirection = Direction_ConvertToString(futureCard);
 
             var msg = string.Format("（恋愛運） "+
-                                    "\n 一番左は{0}カードの{1}です。つまり、過去は{2}な状況でした" +
-                                    "\n 真ん中は{3}カードの{4}です。今は{5}な状況にあります。" +
-                                    "\n 一番右は{6}カードの{7}です。今は{8}な状況にあります。",
+                                    "\n\n 一番左は{0}カードの{1}です。\nつまり、過去は{2}な状況でした" +
+                                    "\n\n 真ん中は{3}カードの{4}です。\n今は{5}な状況にあります。" +
+                                    "\n\n 一番右は{6}カードの{7}です。\n今は{8}な状況にあります。",
                 pastCard.Name,
                 pastDirection,
                 pastLove,
@@ -249,7 +255,10 @@ namespace TarotReadingPlayer.Information.Reader
         {
             displayer.ShowMessage(msg);
             displayer.DisplayResult();
+            SetSpread(TarotSpreads.OneOracle);
             DeleteAllRecords();
+            currentTarotSpread = 0;
+            NecessaryCardNumber = 0;
         }
     }
 }
