@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using TarotReadingPlayer.Information.Reader;
 
+[RequireComponent(typeof(TarotSpreadReader))]
 public class ReadThreeCardsTest : MonoBehaviour
 {
-    public TarotSpreadReader reader;
+    private TarotSpreadReader reader;
+
+    void Start()
+    {
+        reader = this.gameObject.GetComponent<TarotSpreadReader>();
+    }
 
     // Update is called once per frame
     void Update()

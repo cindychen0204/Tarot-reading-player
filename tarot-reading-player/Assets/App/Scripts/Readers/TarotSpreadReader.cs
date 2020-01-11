@@ -57,8 +57,8 @@ namespace TarotReadingPlayer.Information.Reader
 
         void Start()
         {
-            var msg = "Please Select Button";
-            ShowTextMessage(msg);
+            //var msg = "Please Select Button";
+            //ShowTextMessage(msg);
         }
 
         #region 外クラス用
@@ -197,7 +197,7 @@ namespace TarotReadingPlayer.Information.Reader
                 love,
                 advice);
 
-            ShowTextMessage(msg);
+            ShowResult(msg);
         }
 
         /// <summary>
@@ -221,8 +221,9 @@ namespace TarotReadingPlayer.Information.Reader
             var futureLove = Love_ConvertToString(futureCard);
             var futureDirection = Direction_ConvertToString(futureCard);
 
-            var msg = string.Format("（恋愛運）\n 一番左は{0}カードの{1}です。つまり、過去は{2}な状況でした。\n" +
-                                    "\n 真ん中は{3}カードの{4}です。今は{5}な状況にあります。\n " +
+            var msg = string.Format("（恋愛運） "+
+                                    "\n 一番左は{0}カードの{1}です。つまり、過去は{2}な状況でした" +
+                                    "\n 真ん中は{3}カードの{4}です。今は{5}な状況にあります。" +
                                     "\n 一番右は{6}カードの{7}です。今は{8}な状況にあります。",
                 pastCard.Name,
                 pastDirection,
@@ -234,13 +235,21 @@ namespace TarotReadingPlayer.Information.Reader
                 futureDirection,
                 futureLove);
 
-            ShowTextMessage(msg);
+            ShowResult(msg);
+           
         }
         #endregion
 
         public void ShowTextMessage(string msg)
         {
             displayer.ShowMessage(msg);
+        }
+
+        public void ShowResult(string msg)
+        {
+            displayer.ShowMessage(msg);
+            displayer.DisplayResult();
+            DeleteAllRecords();
         }
     }
 }

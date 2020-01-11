@@ -6,8 +6,8 @@ namespace TarotReadingPlayer.Information.Controller
 {
     public class TarotReadingController : MonoBehaviour
     {
-        public TarotSpreadReader reader;
-        private TarotReadingDisplayer displayer;
+        [SerializeField] private TarotSpreadReader reader;
+        [SerializeField] private TarotReadingDisplayer displayer;
         
         public void OnSelectedOneCardReading()
         {
