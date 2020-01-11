@@ -58,8 +58,8 @@ namespace TarotReadingPlayer.Information.Reader
         //新しいカードが検出されるときに呼び出される
         void OnNewTrackingResultAdded(ARTrackedImagesChangedEventArgs eventArgs)
         {
-            //ARTrackedImagesChangedEventArgs.updated →更新される画像リスト
-            foreach (var trackedImage in eventArgs.updated)
+            //更新される画像リスト
+            foreach (var trackedImage in eventArgs.added)
             {
                 var cardName = trackedImage.referenceImage.name;
                 var direction = DetectCardDirection(trackedImage);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using TarotReadingPlayer.Information.Editor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,8 @@ namespace TarotReadingPlayer.Information.Reader
 
         private List<TarotCard> detectCardList = new List<TarotCard>();
 
+        private List<string> cardNameList = new List<string>();
+
         void Start()
         {
             cardMessage.text = "Please Select Button";
@@ -47,16 +50,17 @@ namespace TarotReadingPlayer.Information.Reader
 
         public void AddDetectCard(TarotCard tarotCard)
         {
-            if (detectCardList.Contains(tarotCard)) return;
+            if (cardNameList.Contains(tarotCard.Name)) return;
+            Debug.Log("Detected Card number" + detectCardList.Count);
+            cardNameList.Add(tarotCard.Name);
             detectCardList.Add(tarotCard);
             ReadCard();
         }
 
-        public void RemoveAllCards()
-        {
+        public void RemoveAllCards(){
+            cardNameList.Clear();
             detectCardList.Clear();
         }
-
 
         /// <summary>
         /// カード情報を受け取り、設定されたスプレッドに対応させる
@@ -99,10 +103,71 @@ namespace TarotReadingPlayer.Information.Reader
 
         /// <summary>
         /// 位置違いにより、カードのそれぞれ該当する場所を判別
+        /// 現状は「過去、現在、未来」の恋愛運のみ
         /// </summary>
         private void ReadThreeCards()
         {
-            //TODO
+            //In order
+            List<TarotCard> SortedList = detectCardList.OrderBy(card => card.Position.x).ToList();
+            var pastCart = SortedList[0];
+            var currentCard = SortedList[1];
+            var futrueCard = SortedList[2];
+            Debug.Log("pastCart:" + pastCart.Name);
+            Debug.Log("currentCard:" + currentCard.Name);
+            Debug.Log("futrueCard:" + futrueCard.Name);
+            
+            var pastLove = "";
+            var pastDirection = "";
+            if (pastCart.Direction == CardDirection.Upright)
+            {
+                pastDirection = "正位";
+                pastLove = pastCart.Love_Up;
+            }
+            else if (pastCart.Direction == CardDirection.Reversed)
+            {
+                pastDirection = "逆位";
+                pastLove = pastCart.Love_Re;
+            }
+
+            var currentLove = "";
+            var currentDirection = "";
+            if (currentCard.Direction == CardDirection.Upright)
+            {
+                currentDirection = "正位";
+                currentLove = currentCard.Love_Up;
+            }
+            else if (currentCard.Direction == CardDirection.Reversed)
+            {
+                currentDirection = "逆位";
+                currentLove = currentCard.Love_Re;
+            }
+
+            var futureLove = "";
+            var futureDirection = "";
+            if (futrueCard.Direction == CardDirection.Upright)
+            {
+                futureDirection = "正位";
+                futureLove = futrueCard.Love_Up;
+            }
+            else if (futrueCard.Direction == CardDirection.Reversed)
+            {
+                futureDirection = "逆位";
+                futureLove = futrueCard.Love_Re;
+            }
+
+            var msg = string.Format("（恋愛運）\n 一番左は{0}カードの{1}です。つまり、過去は{2}な状況でした。\n" +
+                                     "\n 真ん中は{3}カードの{4}です。今は{5}な状況にあります。\n "+
+                                     "\n 一番右は{6}カードの{7}です。今は{8}な状況にあります。",
+                pastCart.Name,
+                pastDirection,
+                pastLove,
+                currentCard.Name,
+                currentDirection,
+                currentLove,
+                futrueCard.Name,
+                futureDirection,
+                futureLove);
+            cardMessage.text = msg;
         }
 
         private void ReadOneCard()
