@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using TarotReadingPlayer.Information.Editor;
 using UnityEngine;
 using UnityEngine.UI;
+using TarotReadingPlayer.Information.Displayer;
 
 namespace TarotReadingPlayer.Information.Reader
 {
-    public enum Spreads
+    public enum TarotSpreads
     {
         Default,
         OneOracle,
@@ -20,32 +20,52 @@ namespace TarotReadingPlayer.Information.Reader
         Calendar
     }
 
+    public enum ThreeCardsReadingMethods
+    {
+        Default,
+
+        //運の流れ
+        Past_Now_NearFuture,
+
+        //問題の対処法
+        Cause_Result_Advice,
+
+        //判断の仕方
+        Yes_Hold_No
+    }
+
     public class TarotSpreadReader : MonoBehaviour
     {
         //後の実装でUIから決めることにする
         [SerializeField]
-        private Spreads currentSpread = Spreads.Default;
+        private TarotSpreads currentTarotSpread = TarotSpreads.Default;
 
-        public Spreads CurrentSpread => currentSpread;
+        public TarotSpreads CurrentTarotSpread => currentTarotSpread;
 
-        public ThreeCardsReadingMethods method = ThreeCardsReadingMethods.Past_Now_NearFuture;
+        [SerializeField]
+        private ThreeCardsReadingMethods threeCardMethod = ThreeCardsReadingMethods.Default;
 
-        public Text cardMessage;
+        public ThreeCardsReadingMethods ThreeCardMethod => threeCardMethod;
 
-        public TarotCardDatabaseObject TarotDatabaseObject;
+        [SerializeField] private TarotReadingDisplayer displayer;
 
-        private List<TarotCard> detectCardList = new List<TarotCard>();
+        public TarotCardDatabaseObject TarotDatabaseObject { get; }
 
-        private List<string> cardNameList = new List<string>();
+        private readonly List<TarotCard> detectCardList = new List<TarotCard>();
+
+        private readonly List<string> cardNameList = new List<string>();
 
         void Start()
         {
-            cardMessage.text = "Please Select Button";
+            var msg = "Please Select Button";
+            ShowTextMessage(msg);
         }
 
-        public void SetSpread(Spreads spread)
+        #region 外クラス用
+
+        public void SetSpread(TarotSpreads tarotSpread)
         {
-            currentSpread = spread;
+            currentTarotSpread = tarotSpread;
         }
 
         public void AddDetectCard(TarotCard tarotCard)
@@ -54,10 +74,11 @@ namespace TarotReadingPlayer.Information.Reader
             Debug.Log("Detected Card number" + detectCardList.Count);
             cardNameList.Add(tarotCard.Name);
             detectCardList.Add(tarotCard);
-            ReadCard();
+            ReadCardWithSettingsSpreads();
         }
 
-        public void RemoveAllCards(){
+        public void DeleteAllRecords()
+        {
             cardNameList.Clear();
             detectCardList.Clear();
         }
@@ -66,39 +87,117 @@ namespace TarotReadingPlayer.Information.Reader
         /// カード情報を受け取り、設定されたスプレッドに対応させる
         /// </summary>
         /// <param name="tarotCard"></param>
-        public void ReadCard()
+        public void ReadCardWithSettingsSpreads()
         {
-            switch (currentSpread)
+            switch (currentTarotSpread)
             {
-                case Spreads.Default:
+                case TarotSpreads.Default:
                     break;
-                case Spreads.OneOracle:
+                case TarotSpreads.OneOracle:
                     if (detectCardList.Count == 1)
                     {
                         ReadOneCard();
                     }
                     break;
-                case Spreads.ThreeCards:
+                case TarotSpreads.ThreeCards:
                     if (detectCardList.Count == 3)
                     {
                         ReadThreeCards();
                     }
                     break;
-                case Spreads.Alternatively:
+                case TarotSpreads.Alternatively:
                     break;
-                case Spreads.Hexagram:
+                case TarotSpreads.Hexagram:
                     break;
-                case Spreads.CelticCross:
+                case TarotSpreads.CelticCross:
                     break;
-                case Spreads.Horseshoe:
+                case TarotSpreads.Horseshoe:
                     break;
-                case Spreads.Horoscope:
+                case TarotSpreads.Horoscope:
                     break;
-                case Spreads.HeartSonar:
+                case TarotSpreads.HeartSonar:
                     break;
-                case Spreads.Calendar:
+                case TarotSpreads.Calendar:
                     break;
             }
+        }
+        #endregion
+
+        #region カードの向きにより情報を取り出すメソッド
+        private static string Direction_ConvertToString(TarotCard card)
+        {
+            var directionResult = "";
+            if (card.Direction == CardDirection.Upright)
+            {
+                directionResult = "正位";
+            }
+            else if (card.Direction == CardDirection.Reversed)
+            {
+                directionResult = "逆位";
+            }
+            return directionResult;
+        }
+
+        private static string Love_ConvertToString(TarotCard card)
+        {
+            var loveResult = "";
+            if (card.Direction == CardDirection.Upright)
+            {
+                loveResult = card.Love_Up;
+            }
+            else if (card.Direction == CardDirection.Reversed)
+            {
+                loveResult = card.Love_Re;
+            }
+            return loveResult;
+        }
+
+        private static string Word_ConvertToString(TarotCard card)
+        {
+            var wordResult = "";
+            if (card.Direction == CardDirection.Upright)
+            {
+                wordResult = card.Work_Up;
+            }
+            else if (card.Direction == CardDirection.Reversed)
+            {
+                wordResult = card.Work_Re;
+            }
+            return wordResult;
+        }
+
+        private static string Advice_ConvertToString(TarotCard card)
+        {
+            var advice = "";
+            if (card.Direction == CardDirection.Upright)
+            {
+                advice = card.Advice_Up;
+            }
+            else if (card.Direction == CardDirection.Reversed)
+            {
+                advice = card.Advice_Re;
+            }
+            return advice;
+        }
+        #endregion
+
+        #region カード情報の読み込み
+        private void ReadOneCard()
+        {
+            var card = detectCardList[0];
+            var work = Word_ConvertToString(card);
+            var love = Love_ConvertToString(card);
+            var advice = Advice_ConvertToString(card);
+            var direction = Direction_ConvertToString(card);
+
+            var msg = string.Format("{0}のカードの{1}です。\n 仕事運は：{2}\n恋愛運は： {3} \n アドバイス：{4}",
+                card.Name,
+                direction,
+                work,
+                love,
+                advice);
+
+            ShowTextMessage(msg);
         }
 
         /// <summary>
@@ -108,97 +207,40 @@ namespace TarotReadingPlayer.Information.Reader
         private void ReadThreeCards()
         {
             //In order
-            List<TarotCard> SortedList = detectCardList.OrderBy(card => card.Position.x).ToList();
-            var pastCart = SortedList[0];
-            var currentCard = SortedList[1];
-            var futrueCard = SortedList[2];
-            Debug.Log("pastCart:" + pastCart.Name);
-            Debug.Log("currentCard:" + currentCard.Name);
-            Debug.Log("futrueCard:" + futrueCard.Name);
-            
-            var pastLove = "";
-            var pastDirection = "";
-            if (pastCart.Direction == CardDirection.Upright)
-            {
-                pastDirection = "正位";
-                pastLove = pastCart.Love_Up;
-            }
-            else if (pastCart.Direction == CardDirection.Reversed)
-            {
-                pastDirection = "逆位";
-                pastLove = pastCart.Love_Re;
-            }
+            var sortedList = detectCardList.OrderBy(card => card.Position.x).ToList();
+            var pastCard = sortedList[0];
+            var currentCard = sortedList[1];
+            var futureCard = sortedList[2];
 
-            var currentLove = "";
-            var currentDirection = "";
-            if (currentCard.Direction == CardDirection.Upright)
-            {
-                currentDirection = "正位";
-                currentLove = currentCard.Love_Up;
-            }
-            else if (currentCard.Direction == CardDirection.Reversed)
-            {
-                currentDirection = "逆位";
-                currentLove = currentCard.Love_Re;
-            }
+            var pastLove = Love_ConvertToString(pastCard);
+            var pastDirection = Direction_ConvertToString(pastCard);
 
-            var futureLove = "";
-            var futureDirection = "";
-            if (futrueCard.Direction == CardDirection.Upright)
-            {
-                futureDirection = "正位";
-                futureLove = futrueCard.Love_Up;
-            }
-            else if (futrueCard.Direction == CardDirection.Reversed)
-            {
-                futureDirection = "逆位";
-                futureLove = futrueCard.Love_Re;
-            }
+            var currentLove = Love_ConvertToString(currentCard);
+            var currentDirection = Direction_ConvertToString(currentCard);
+
+            var futureLove = Love_ConvertToString(futureCard);
+            var futureDirection = Direction_ConvertToString(futureCard);
 
             var msg = string.Format("（恋愛運）\n 一番左は{0}カードの{1}です。つまり、過去は{2}な状況でした。\n" +
-                                     "\n 真ん中は{3}カードの{4}です。今は{5}な状況にあります。\n "+
-                                     "\n 一番右は{6}カードの{7}です。今は{8}な状況にあります。",
-                pastCart.Name,
+                                    "\n 真ん中は{3}カードの{4}です。今は{5}な状況にあります。\n " +
+                                    "\n 一番右は{6}カードの{7}です。今は{8}な状況にあります。",
+                pastCard.Name,
                 pastDirection,
                 pastLove,
                 currentCard.Name,
                 currentDirection,
                 currentLove,
-                futrueCard.Name,
+                futureCard.Name,
                 futureDirection,
                 futureLove);
-            cardMessage.text = msg;
+
+            ShowTextMessage(msg);
         }
+        #endregion
 
-        private void ReadOneCard()
+        public void ShowTextMessage(string msg)
         {
-            var work = "";
-            var love = "";
-            var advice = "";
-            var direction = "";
-            var card = detectCardList[0];
-            if (card.Direction == CardDirection.Upright)
-            {
-                direction = "正位";
-                work = card.Work_Up;
-                love = card.Love_Up;
-                advice = card.Advice_Up;
-            }
-            else if (card.Direction == CardDirection.Reversed)
-            {
-                direction = "逆位";
-                work = card.Work_Re;
-                love = card.Love_Re;
-                advice = card.Advice_Re;
-            }
-
-            var msg = string.Format("{0}のカードの{1}です。\n 仕事運は：{2}\n恋愛運は： {3} \n アドバイス：{4}",
-                card.Name,
-                direction,
-                work,
-                love,
-                advice);
-            cardMessage.text = msg;
+            displayer.ShowMessage(msg);
         }
     }
 }

@@ -115,7 +115,7 @@ namespace TarotReadingPlayer.Information.Editor
         }
         #endregion
 
-        void OnGUI()
+        private void OnGUI()
         {
             EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
             DisplayListArea();
@@ -123,6 +123,7 @@ namespace TarotReadingPlayer.Information.Editor
             EditorGUILayout.EndHorizontal();
         }
 
+        #region Areaの設定
         void DisplayListArea()
         {
             EditorGUILayout.BeginVertical(GUILayout.Width(250));
@@ -156,8 +157,8 @@ namespace TarotReadingPlayer.Information.Editor
             {
                 for (int cnt = 0; cnt < databaseObject.Count; cnt++)
                 {
-                    var progress = (float) cnt / databaseObject.Count;
-                    EditorUtility.DisplayProgressBar("ファイル作成中", databaseObject.TarotCard(cnt).cardEngName + ".txt",  progress);
+                    var progress = (float)cnt / databaseObject.Count;
+                    EditorUtility.DisplayProgressBar("ファイル作成中", databaseObject.TarotCard(cnt).cardEngName + ".txt", progress);
 
                     var jsonString = CreateTarotInformationJson(databaseObject.TarotCard(cnt));
                     var filename = databaseObject.TarotCard(cnt).number + "_" + databaseObject.TarotCard(cnt).cardEngName + ".json";
@@ -178,7 +179,7 @@ namespace TarotReadingPlayer.Information.Editor
 
             switch (dataState)
             {
-               default:
+                default:
                     DisplayBlankMainArea();
                     break;
                 case State.EDIT:
@@ -284,12 +285,8 @@ namespace TarotReadingPlayer.Information.Editor
                 databaseObject.SortTarotNumber();
                 EditorUtility.SetDirty(databaseObject);
 
-                //Cloud use
-                var cardInfo = selectCard.cardEngName;
-                var filename = cardInfo + ".txt";
-
-                var jsonString =  CreateTarotInformationJson(selectCard);
-                filename = selectCard.number + "_" + selectCard.cardEngName + ".json";
+                var jsonString = CreateTarotInformationJson(selectCard);
+                var filename = selectCard.number + "_" + selectCard.cardEngName + ".json";
                 SaveFile(jsonString, filename);
 
                 dataState = State.BLANK;
@@ -305,7 +302,7 @@ namespace TarotReadingPlayer.Information.Editor
 
             if (GUILayout.Button("このカード削除", GUILayout.Width(100)))
             {
-                Debug.Log("Deleted data from database:"+ selectCard.cardEngName);
+                Debug.Log("Deleted data from database:" + selectCard.cardEngName);
                 databaseObject.Remove(selectCard);
                 databaseObject.SortTarotNumber();
                 EditorUtility.SetDirty(databaseObject);
@@ -313,7 +310,11 @@ namespace TarotReadingPlayer.Information.Editor
             }
         }
 
-        void RetrieveFromDatabase()
+
+
+        #endregion
+
+        private void RetrieveFromDatabase()
         {
             databaseObject.Clear();
             foreach (string file in Directory.EnumerateFiles(DatabasePath, "*.json"))
@@ -326,7 +327,7 @@ namespace TarotReadingPlayer.Information.Editor
             Debug.Log("情報を回復しました");
         }
 
-        string CreateTarotInformationJson(TarotCardInformation tarotInfo)
+        private string CreateTarotInformationJson(TarotCardInformation tarotInfo)
         {
             var list = new List<TarotCardInformation> {tarotInfo};
             TarotDatabaseInformations database = new TarotDatabaseInformations();
@@ -334,10 +335,9 @@ namespace TarotReadingPlayer.Information.Editor
             return JsonUtility.ToJson(database, true);
         }
 
-        void SaveFile(string content, string filename)
+        private void SaveFile(string content, string filename)
         {
             var filepath = Path.Combine(DatabasePath, filename);
-
             using (var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write))
             {
                 using (var r = new StreamWriter(fs))
@@ -345,13 +345,12 @@ namespace TarotReadingPlayer.Information.Editor
                     r.Write(content);
                 }
             }
-
             AssetDatabase.ImportAsset(filepath);
             Selection.activeObject = AssetDatabase.LoadMainAssetAtPath(filepath);
             EditorGUIUtility.PingObject(Selection.activeObject);
         }
 
-        void DisplayAddMainArea()
+        private void DisplayAddMainArea()
         {
             newTarotCardName = EditorGUILayout.TextField(new GUIContent(cardName), newTarotCardName);
             newTarotCardEnglishName = EditorGUILayout.TextField(new GUIContent(cardEnglishName), newTarotCardEnglishName);
@@ -428,7 +427,7 @@ namespace TarotReadingPlayer.Information.Editor
             }
         }
 
-        void ResetParameters()
+        private void ResetParameters()
         {
             newTarotCardName = string.Empty;
             newTarotCardEnglishName = string.Empty;

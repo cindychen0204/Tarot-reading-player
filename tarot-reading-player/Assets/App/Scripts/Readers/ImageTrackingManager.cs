@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
 namespace TarotReadingPlayer.Information.Reader
@@ -30,33 +29,31 @@ namespace TarotReadingPlayer.Information.Reader
             set => aRCamera = value;
         }
 
-        [SerializeField] private Text text;
-
         [SerializeField] private ARTrackedImageManager trackingManager;
 
         [SerializeField] private TarotSpreadReader reader;
 
         private IFindCardInformation finder;
 
-        void Start()
+        private void Start()
         {
             trackingManager = GetComponent<ARTrackedImageManager>();
             finder = new TarotCardFinder();
             finder.ObtainDatabase();
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             trackingManager.trackedImagesChanged += OnNewTrackingResultAdded;
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             trackingManager.trackedImagesChanged -= OnNewTrackingResultAdded;
         }
 
         //新しいカードが検出されるときに呼び出される
-        void OnNewTrackingResultAdded(ARTrackedImagesChangedEventArgs eventArgs)
+        private void OnNewTrackingResultAdded(ARTrackedImagesChangedEventArgs eventArgs)
         {
             //更新される画像リスト
             foreach (var trackedImage in eventArgs.added)
@@ -70,32 +67,11 @@ namespace TarotReadingPlayer.Information.Reader
         }
 
         /// <summary>
-        /// UIにタロットの情報を呈示する
-        /// </summary>
-        /// <param name="trackedImage"></param>
-        /// <param name="cardName"></param>
-        /// <param name="direction"></param>
-        void ShowText(ARTrackedImage trackedImage, string cardName, CardDirection direction)
-        {
-            if (text != null)
-            {
-                text.text = string.Format(
-                    "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm\nDirection: {5}",
-                    cardName,
-                    trackedImage.trackingState,
-                    trackedImage.referenceImage.guid,
-                    trackedImage.referenceImage.size * 100f,
-                    trackedImage.size * 100f,
-                    direction);
-            }
-        }
-
-        /// <summary>
         /// カードの向きを取得
         /// </summary>
         /// <param name="trackedImage"></param>
         /// <returns></returns>
-        CardDirection DetectCardDirection(ARTrackedImage trackedImage)
+        private CardDirection DetectCardDirection(ARTrackedImage trackedImage)
         {
             var cardDirection = CardDirection.Default;
             var rotationY = RelativeRotation(ARCamera.transform.rotation.eulerAngles,
@@ -117,7 +93,7 @@ namespace TarotReadingPlayer.Information.Reader
             return cardDirection;
         }
 
-        Vector3 RelativeRotation(Vector3 origin, Vector3 target)
+        private Vector3 RelativeRotation(Vector3 origin, Vector3 target)
         {
             return origin - target;
         }

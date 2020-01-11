@@ -1,28 +1,34 @@
-﻿using UnityEngine;
+﻿using TarotReadingPlayer.Information.Displayer;
+using TarotReadingPlayer.Information.Reader;
+using UnityEngine;
 
-namespace TarotReadingPlayer.Information.Reader
+namespace TarotReadingPlayer.Information.Controller
 {
     public class TarotReadingController : MonoBehaviour
     {
         public TarotSpreadReader reader;
+        private TarotReadingDisplayer displayer;
         
         public void OnSelectedOneCardReading()
         {
-            reader.SetSpread(Spreads.OneOracle);
-            reader.cardMessage.text = "Finding One Card...";
+            reader.SetSpread(TarotSpreads.OneOracle);
+            var msg = "Finding One Card...";
+            displayer.ShowMessage(msg);
         }
 
         public void OnSelectedThreeCardsReading()
         {
-            reader.SetSpread(Spreads.ThreeCards);
-            reader.cardMessage.text = "Finding Three Cards...";
+            reader.SetSpread(TarotSpreads.ThreeCards);
+            var msg = "Finding Three Cards...";
+            displayer.ShowMessage(msg);
         }
 
         public void OnSelectedOneMoreTimeReading()
         {
-            reader.RemoveAllCards();
-            reader.SetSpread(Spreads.Default);
-            reader.cardMessage.text = "Please Select Button";
+            reader.DeleteAllRecords();
+            reader.SetSpread(TarotSpreads.Default);
+            var msg = "Please Select Button";
+            displayer.ShowMessage(msg);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using TarotReadingPlayer.Information;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TarotReadingPlayer.Information.Reader
 {

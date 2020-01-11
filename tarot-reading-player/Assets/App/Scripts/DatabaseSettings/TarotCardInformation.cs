@@ -22,20 +22,6 @@ namespace TarotReadingPlayer.Information.Editor
         Advice
     }
 
-    public enum ThreeCardsReadingMethods
-    {
-        Default,
-
-        //運の流れ
-        Past_Now_NearFuture,
-
-        //問題の対処法
-        Cause_Result_Advice,
-
-        //判断の仕方
-        Yes_Hold_No
-    }
-
     [Serializable]
     public class TarotCardInformation
     {
