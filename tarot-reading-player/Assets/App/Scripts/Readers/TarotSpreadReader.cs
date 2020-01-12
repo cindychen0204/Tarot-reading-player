@@ -96,6 +96,7 @@ namespace TarotReadingPlayer.Information.Reader
         {
             NecessaryCardNumber = 0;
             ReadingCardNumber = 0;
+            SetSpread(TarotSpreads.OneOracle);
         }
 
         #region 外クラス用
