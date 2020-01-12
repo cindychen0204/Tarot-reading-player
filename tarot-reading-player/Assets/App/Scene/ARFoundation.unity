@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -142,8 +142,8 @@ RectTransform:
   m_Children:
   - {fileID: 37328586}
   - {fileID: 790458215}
-  - {fileID: 1722067814}
   - {fileID: 489142784}
+  - {fileID: 1722067814}
   m_Father: {fileID: 313151387}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1141,7 +1141,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1357810}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2418,8 +2418,6 @@ MonoBehaviour:
   displayer: {fileID: 1600087176}
   TarotDatabaseObject: {fileID: 11400000, guid: ac6ded5fcfd07aa49831610578f3e04b,
     type: 2}
-  ReadingCardNumber: 0
-  NecessaryCardNumber: 0
 --- !u!114 &1600087175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2447,8 +2445,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: {fileID: 1338543044}
-  NesscaryCardNumber: {fileID: 489142785}
-  CurrentCardNumber: {fileID: 1722067815}
+  NesscaryNumberText: {fileID: 489142785}
+  ReadingNumberText: {fileID: 1722067815}
   ProgressRail: {fileID: 1733758025}
   ResultMenu: {fileID: 1970072665}
   reader: {fileID: 1600087174}
@@ -2747,7 +2745,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1357810}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

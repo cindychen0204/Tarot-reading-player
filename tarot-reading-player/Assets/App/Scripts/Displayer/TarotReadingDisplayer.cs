@@ -7,29 +7,34 @@ namespace TarotReadingPlayer.Information.Displayer
     public class TarotReadingDisplayer : MonoBehaviour
     {
         [SerializeField] private Text message;
-        [SerializeField] private Text NesscaryCardNumber;
-        [SerializeField] private Text CurrentCardNumber;
+        [SerializeField] private Text NesscaryNumberText;
+        [SerializeField] private Text ReadingNumberText;
         [SerializeField] private Image ProgressRail;
         [SerializeField] private Animator ResultMenu;
-        [SerializeField] private TarotSpreadReader reader;    
-        private int ReadingCardNumber = 0;
-        private int NecessaryCardNumber = 0;
+        [SerializeField] private TarotSpreadReader reader;
 
-        void Update()
+        void Start()
         {
-            ReadingCardNumber = reader.ReadingCardNumber;
-            NecessaryCardNumber = reader.NecessaryCardNumber;
-            CurrentCardNumber.text = ReadingCardNumber.ToString();
-            NesscaryCardNumber.text = "/" + NecessaryCardNumber.ToString();
+            reader.OnNecessaryCardNumberChange += OnCardNumberChange;
+            reader.OnReadingCardNumberChange += OnCardNumberChange;
+        }
 
-            if(ReadingCardNumber == 0 || NecessaryCardNumber == 0)
+        void OnCardNumberChange()
+        {
+            var ReadingCardNumber = reader.ReadingCardNumber;
+            var NecessaryCardNumber = reader.NecessaryCardNumber;
+            NesscaryNumberText.text = "/" + NecessaryCardNumber.ToString();
+            ReadingNumberText.text = ReadingCardNumber.ToString();
+
+            if (NecessaryCardNumber == 0 || ReadingCardNumber == 0)
             {
                 ProgressRail.gameObject.transform.parent.parent.gameObject.SetActive(false);
                 return;
             }
             ProgressRail.gameObject.transform.parent.parent.gameObject.SetActive(true);
-            ProgressRail.fillAmount = (float)ReadingCardNumber/NecessaryCardNumber;
+            ProgressRail.fillAmount = (float)ReadingCardNumber / NecessaryCardNumber;
         }
+
         public void ShowMessage(string msg)
         {
             message.text = msg;

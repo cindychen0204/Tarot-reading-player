@@ -54,14 +54,42 @@ namespace TarotReadingPlayer.Information.Reader
 
         private readonly List<string> cardNameList = new List<string>();
 
-        public int ReadingCardNumber = 0;
+        public delegate void ReadingCardNumberHandler();
 
-        public int NecessaryCardNumber = 0;
+        public ReadingCardNumberHandler OnReadingCardNumberChange;
 
-        void Start()
+        private int readingCardNumber = 0;
+
+        public int ReadingCardNumber
         {
-            //var msg = "Please Select Button";
-            //ShowTextMessage(msg);
+            get
+            {
+                return readingCardNumber;
+            }
+            set
+            {
+                readingCardNumber = value;
+                OnReadingCardNumberChange.Invoke();
+            }
+        }
+
+        public delegate void NecessaryNumberHandler();
+
+        public NecessaryNumberHandler OnNecessaryCardNumberChange;
+
+        private int necessaryCardNumber = 0;
+
+        public int NecessaryCardNumber
+        {
+            get
+            {
+                return necessaryCardNumber;
+            }
+            set
+            {
+                necessaryCardNumber = value;
+                OnNecessaryCardNumberChange.Invoke();
+            }
         }
 
         #region 外クラス用
