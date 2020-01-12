@@ -13,7 +13,7 @@ namespace TarotReadingPlayer.Information.Displayer
         [SerializeField] private Animator ResultMenu;
         [SerializeField] private TarotSpreadReader reader;
 
-        void Start()
+        void Awake()
         {
             reader.OnNecessaryCardNumberChange += OnCardNumberChange;
             reader.OnReadingCardNumberChange += OnCardNumberChange;
@@ -21,18 +21,18 @@ namespace TarotReadingPlayer.Information.Displayer
 
         void OnCardNumberChange()
         {
-            var ReadingCardNumber = reader.ReadingCardNumber;
-            var NecessaryCardNumber = reader.NecessaryCardNumber;
-            NesscaryNumberText.text = "/" + NecessaryCardNumber.ToString();
-            ReadingNumberText.text = ReadingCardNumber.ToString();
+            var readingCardNumber = reader.ReadingCardNumber;
+            var necessaryCardNumber = reader.NecessaryCardNumber;
+            NesscaryNumberText.text = "/" + necessaryCardNumber.ToString();
+            ReadingNumberText.text = readingCardNumber.ToString();
 
-            if (NecessaryCardNumber == 0 || ReadingCardNumber == 0)
+            if (necessaryCardNumber == 0 || readingCardNumber == 0)
             {
                 ProgressRail.gameObject.transform.parent.parent.gameObject.SetActive(false);
                 return;
             }
             ProgressRail.gameObject.transform.parent.parent.gameObject.SetActive(true);
-            ProgressRail.fillAmount = (float)ReadingCardNumber / NecessaryCardNumber;
+            ProgressRail.fillAmount = (float) readingCardNumber / necessaryCardNumber;
         }
 
         public void ShowMessage(string msg)
