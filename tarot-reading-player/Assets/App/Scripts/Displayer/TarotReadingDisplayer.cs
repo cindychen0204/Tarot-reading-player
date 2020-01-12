@@ -7,18 +7,12 @@ namespace TarotReadingPlayer.Information.Displayer
     public class TarotReadingDisplayer : MonoBehaviour
     {
         [SerializeField] private Text message;
-
         [SerializeField] private Text NesscaryCardNumber;
-
         [SerializeField] private Text CurrentCardNumber;
         [SerializeField] private Image ProgressRail;
         [SerializeField] private Animator ResultMenu;
-
-
-        [SerializeField] private TarotSpreadReader reader;
-        
+        [SerializeField] private TarotSpreadReader reader;    
         private int ReadingCardNumber = 0;
-
         private int NecessaryCardNumber = 0;
 
         void Update()
@@ -26,7 +20,7 @@ namespace TarotReadingPlayer.Information.Displayer
             ReadingCardNumber = reader.ReadingCardNumber;
             NecessaryCardNumber = reader.NecessaryCardNumber;
             CurrentCardNumber.text = ReadingCardNumber.ToString();
-            NesscaryCardNumber.text = NecessaryCardNumber.ToString();
+            NesscaryCardNumber.text = "/" + NecessaryCardNumber.ToString();
 
             if(ReadingCardNumber == 0 || NecessaryCardNumber == 0)
             {
