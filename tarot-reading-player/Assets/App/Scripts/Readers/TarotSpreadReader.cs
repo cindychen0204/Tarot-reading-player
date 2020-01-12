@@ -92,6 +92,12 @@ namespace TarotReadingPlayer.Information.Reader
             }
         }
 
+        void Start()
+        {
+            NecessaryCardNumber = 0;
+            ReadingCardNumber = 0;
+        }
+
         #region 外クラス用
 
         public void SetSpread(TarotSpreads tarotSpread)

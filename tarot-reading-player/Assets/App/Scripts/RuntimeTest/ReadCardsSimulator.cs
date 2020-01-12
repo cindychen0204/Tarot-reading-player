@@ -16,8 +16,8 @@ public class ReadCardsSimulator : MonoBehaviour
     void Start()
     {
         reader = this.gameObject.GetComponent<TarotSpreadReader>();
-        if (simulatingOracle == SimulatingOracle.ThreeCardOracle) reader.CurrentTarotSpread = TarotSpreads.ThreeCards;
-        else if (simulatingOracle == SimulatingOracle.OneOracle) reader.CurrentTarotSpread = TarotSpreads.OneOracle;
+        if (simulatingOracle == SimulatingOracle.ThreeCardOracle) reader.SetSpread(TarotSpreads.ThreeCards);
+        else if (simulatingOracle == SimulatingOracle.OneOracle) reader.SetSpread(TarotSpreads.OneOracle);
     }
 
     // Update is called once per frame
