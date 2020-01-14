@@ -7,10 +7,11 @@ namespace TarotReadingPlayer.Information.Displayer
     public class TarotReadingDisplayer : MonoBehaviour
     {
         [SerializeField] private Text message;
-        [SerializeField] private Text NesscaryNumberText;
-        [SerializeField] private Text ReadingNumberText;
-        [SerializeField] private Image ProgressRail;
-        [SerializeField] private Animator ResultMenu;
+        [SerializeField] private Text nesscaryNumberText;
+        [SerializeField] private Text readingNumberText;
+        [SerializeField] private Image fllArea;
+        [SerializeField] private GameObject progressRailParent;
+        [SerializeField] private Animator resultPanelAnimator;
         [SerializeField] private TarotSpreadReader reader;
 
         void Awake()
@@ -23,16 +24,16 @@ namespace TarotReadingPlayer.Information.Displayer
         {
             var readingCardNumber = reader.ReadingCardNumber;
             var necessaryCardNumber = reader.NecessaryCardNumber;
-            NesscaryNumberText.text = "/" + necessaryCardNumber.ToString();
-            ReadingNumberText.text = readingCardNumber.ToString();
+            nesscaryNumberText.text = "/" + necessaryCardNumber.ToString();
+            readingNumberText.text = readingCardNumber.ToString();
 
             if (necessaryCardNumber == 0 || readingCardNumber == 0)
             {
-                ProgressRail.gameObject.transform.parent.parent.gameObject.SetActive(false);
+                progressRailParent.SetActive(false);
                 return;
             }
-            ProgressRail.gameObject.transform.parent.parent.gameObject.SetActive(true);
-            ProgressRail.fillAmount = (float) readingCardNumber / necessaryCardNumber;
+            progressRailParent.SetActive(true);
+            fllArea.fillAmount = (float) readingCardNumber / necessaryCardNumber;
         }
 
         public void ShowMessage(string msg)
@@ -52,12 +53,12 @@ namespace TarotReadingPlayer.Information.Displayer
 
         private void PopUpAnimation()
         {
-            ResultMenu.SetTrigger("PopUp");
+            resultPanelAnimator.SetTrigger("PopUp");
         }
 
         private void PopInAnimation()
         {
-            ResultMenu.SetTrigger("PopIn");
+            resultPanelAnimator.SetTrigger("PopIn");
         }
     }
 }

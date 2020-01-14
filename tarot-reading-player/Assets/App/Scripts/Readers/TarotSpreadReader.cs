@@ -38,28 +38,16 @@ namespace TarotReadingPlayer.Information.Reader
         //後の実装でUIから決めることにする
         [SerializeField]
         private TarotSpreads currentTarotSpread = TarotSpreads.OneOracle;
-
         public TarotSpreads CurrentTarotSpread => currentTarotSpread;
 
         [SerializeField]
         private ThreeCardsReadingMethods threeCardMethod = ThreeCardsReadingMethods.Default;
-
         public ThreeCardsReadingMethods ThreeCardMethod => threeCardMethod;
 
-        [SerializeField] private TarotReadingDisplayer displayer;
-
-        public TarotCardDatabaseObject TarotDatabaseObject;
-
-        private readonly List<TarotCard> detectCardList = new List<TarotCard>();
-
-        private readonly List<string> cardNameList = new List<string>();
-
         public delegate void ReadingCardNumberHandler();
-
         public ReadingCardNumberHandler OnReadingCardNumberChange;
 
         private int readingCardNumber = 0;
-
         public int ReadingCardNumber
         {
             get
@@ -74,11 +62,9 @@ namespace TarotReadingPlayer.Information.Reader
         }
 
         public delegate void NecessaryNumberHandler();
-
         public NecessaryNumberHandler OnNecessaryCardNumberChange;
 
         private int necessaryCardNumber = 0;
-
         public int NecessaryCardNumber
         {
             get
@@ -91,6 +77,15 @@ namespace TarotReadingPlayer.Information.Reader
                 OnNecessaryCardNumberChange.Invoke();
             }
         }
+
+
+        [SerializeField] private TarotReadingDisplayer displayer;
+
+        public TarotCardDatabaseObject TarotDatabaseObject;
+
+        private readonly List<TarotCard> detectCardList = new List<TarotCard>();
+
+        private readonly List<string> cardNameList = new List<string>();
 
         void Start()
         {
@@ -290,8 +285,18 @@ namespace TarotReadingPlayer.Information.Reader
         {
             displayer.ShowMessage(msg);
             displayer.DisplayResult();
+            ResetInformation();
+        }
+
+        private void ResetInformation()
+        {
             SetSpread(TarotSpreads.OneOracle);
             DeleteAllRecords();
+            ResetCardInformation();
+        }
+
+        private void ResetCardInformation()
+        {
             currentTarotSpread = 0;
             NecessaryCardNumber = 0;
         }
